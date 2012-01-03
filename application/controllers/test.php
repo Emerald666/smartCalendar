@@ -18,7 +18,9 @@ class Test extends CI_Controller {
 
 	public function index()
 	{
-            $this->load->view("modifyProfile_view");
+            $this->load->model('gmail');
+            $this->gmail->getNewMail();
+          // $this->load->view("modifyProfile_view");
 	}
         public function testKeys(){
             $this->load->model('keys');

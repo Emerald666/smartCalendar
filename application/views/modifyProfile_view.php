@@ -147,6 +147,7 @@
                 $('.editPhone').hide();
                 $('.phoneTextWrapper').show();
             });
+            
           });
 
       </script>
@@ -156,26 +157,27 @@
               font-size:12px;
           }
           #nameBox, #descriptionBox, #emailBox, #webPageBox, #phoneBox{
-            width:250px;
+            width:300px;
             margin:50px;
           }
           .nameTextWrapper, .descriptionTextWrapper, .emailTextWrapper, .webPageTextWrapper, .phoneTextWrapper{
             border:solid 1px #0099CC;
             padding:5px;
-            width:187px;
+            width:200px;
           }
           .editNameLink, .editDescriptionLink, .editEmailLink, .editWebPageLink, .editPhoneLink{
            float:right
           }
+
           .nameEditBox, .descriptionEditBox, .emailEditBox, .webPageEditBox, .phoneEditBox{
             overflow: hidden;
-            height: 61px;
             border:solid 1px #0099CC;
-            width:190px;
             font-size:12px;
             font-family:Arial, Helvetica, sans-serif;
             padding:5px
           }
+
+         textarea { resize:both; }
       </style>
 
   </head>
@@ -185,35 +187,35 @@
               <a href="#"class="editNameLink" title="Edit">Edit</a>
               <div class="nameTextWrapper">Hello amine</div>
               <div class="editName" style="display:none" >
-                  <textarea class="nameEditBox" cols="23" rows="3"></textarea>
+                  <textarea class="nameEditBox" cols="26" rows="3"></textarea>
               </div>
           </div>
         <div id="descriptionBox">
               <a href="#"class="editDescriptionLink" title="Edit">Edit</a>
               <div class="descriptionTextWrapper">Hello amine</div>
               <div class="editDescription" style="display:none" >
-                  <textarea class="descriptionEditBox" cols="23" rows="3"></textarea>
+                  <textarea class="descriptionEditBox" cols="26" rows="10"></textarea>
               </div>
           </div>
           <div id="emailBox">
               <a href="#"class="editEmailLink" title="Edit">Edit</a>
               <div class="emailTextWrapper">Hello amine</div>
               <div class="editEmail" style="display:none" >
-                  <textarea class="emailEditBox" cols="23" rows="3"></textarea>
+                  <textarea class="emailEditBox" cols="26" rows="3"></textarea>
               </div>
           </div>
           <div id="webPageBox">
               <a href="#"class="editWebPageLink" title="Edit">Edit</a>
               <div class="webPageTextWrapper">Hello amine</div>
               <div class="editWebPage" style="display:none" >
-                  <textarea class="webPageEditBox" cols="23" rows="3"></textarea>
+                  <textarea class="webPageEditBox" cols="26" rows="3"></textarea>
               </div>
          </div>
           <div id="phoneBox">
               <a href="#"class="editPhoneLink" title="Edit">Edit</a>
               <div class="phoneTextWrapper">Hello amine</div>
               <div class="editPhone" style="display:none" >
-                  <textarea class="phoneEditBox" cols="23" rows="3"></textarea>
+                  <textarea class="phoneEditBox" cols="26" rows="3"></textarea>
               </div>
          </div>
       </div>

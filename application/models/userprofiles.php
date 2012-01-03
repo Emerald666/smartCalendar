@@ -17,14 +17,23 @@
 
 */
 
-class UserProfiles extends CI_Model{
+class Userprofiles extends CI_Model{
 
     /**
      * For testing purposes
-     * @return
+     * @return all the user profiles
      */
     function getAll(){
         $query=$this->db->get('userProfiles');
+        return $query;
+    }
+
+    /**
+     * creates a blank profile
+     * @return true or false based on success of the operation
+     */
+    function createBlankProfile($data){
+        $query=$this->db->insert('userProfiles', $data);
         return $query;
     }
 
