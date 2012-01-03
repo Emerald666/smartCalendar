@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 02, 2012 at 07:42 PM
+-- Generation Time: Jan 02, 2012 at 08:24 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.2-1ubuntu4.11
 
@@ -27,13 +27,15 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 CREATE TABLE IF NOT EXISTS `keys` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `key` int(35) NOT NULL,
+  `key` varchar(35) NOT NULL,
   `name` varchar(40) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`,`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `keys`
 --
 
+INSERT INTO `keys` (`id`, `key`, `name`) VALUES
+(1, '7139', 'amine');
