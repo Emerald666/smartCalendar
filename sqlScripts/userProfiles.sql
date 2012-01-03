@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 02, 2012 at 07:42 PM
+-- Generation Time: Jan 02, 2012 at 07:37 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.2-1ubuntu4.11
 
@@ -22,18 +22,20 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keys`
+-- Table structure for table `userProfiles`
 --
 
-CREATE TABLE IF NOT EXISTS `keys` (
+CREATE TABLE IF NOT EXISTS `userProfiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `key` int(35) NOT NULL,
-  `name` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `key` (`key`,`name`)
+  `userId` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `emails` varchar(50) NOT NULL,
+  `webPages` varchar(50) NOT NULL,
+  `phoneNumbers` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `keys`
+-- Dumping data for table `userProfiles`
 --
 
