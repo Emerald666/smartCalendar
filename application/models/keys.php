@@ -91,10 +91,8 @@ class Keys extends CI_Model{
             'key'=>$key
         );
         $numRowsBefore=$this->db->count_all_results('keys');
-        echo  $numRowsBefore."<br/>";
         $query=$this->db->delete('keys', $data);
         $numRowsAfter=$this->db->count_all_results('keys');
-        echo  $numRowsAfter."<br/>";
         if(($numRowsBefore-$numRowsAfter)==1) return TRUE;
         return FALSE;
     }

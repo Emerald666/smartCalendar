@@ -18,6 +18,9 @@ class Test extends CI_Controller {
 
 	public function index()
 	{
+            $this->load->view("modifyProfile_view");
+	}
+        public function testKeys(){
             $this->load->model('keys');
             $query=$this->keys->addKey('test2');
             if($query==TRUE){
@@ -27,5 +30,6 @@ class Test extends CI_Controller {
             }
 
             echo "hello world";
-	}
+        }
+
 }
