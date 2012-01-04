@@ -33,6 +33,7 @@ class Userprofiles extends CI_Model{
         $data=array();
         if($query->num_rows()==1){
             foreach ($query->result() as $row){
+                 $data['name']=$row->name;
                  $data['description']=$row->description;
                  $data['emails']=$row->emails;
                  $data['webPages']=$row->webPages;
@@ -64,8 +65,12 @@ class Userprofiles extends CI_Model{
                 $name=$this->input->get_post('name');
                 $name=$this->input->_clean_input_data($name);
                 $data=array('name'=>$name);
-               // $query=$this->db->update('userProfiles', $data, $where);
-                echo "p";
+                $query=$this->db->update('userProfiles', $data, $where);
+                if($query==TRUE){
+                    echo "p";
+                }else{
+                    echo "f";
+                }
                 break;
             case 2:
                 $description=$this->input->get_post('description');

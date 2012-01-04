@@ -203,10 +203,10 @@
                 $('.editPhone').hide();
                 $('.phoneTextWrapper').show();
             });
-            
+
           });
 
-      </script>
+          </script>
       <style type="text/css">
           body{
               font-family:Arial, Helvetica, sans-serif;
@@ -241,7 +241,7 @@
       <div id="container">
           <div id="nameBox">
               <a href="#"class="editNameLink" title="Edit">Edit</a>
-              <div class="nameTextWrapper">Hello amine</div>
+              <div class="nameTextWrapper"><?php echo $name;?></div>
               <div class="editName" style="display:none" >
                   <textarea class="nameEditBox" cols="26" rows="3"></textarea>
               </div>
