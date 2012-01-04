@@ -26,8 +26,20 @@
             $(".nameEditBox").change(function(){
                 $('.editName').hide();
                 var boxval=$(".nameEditBox").val();
-                $('.nameTextWrapper').html(boxval);
-                $('.nameTextWrapper').show();
+                var dataString = 'name='+ boxval+'&type=1';
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/smartCalendar/index.php/test/updateUserProfile",
+                    data: dataString,
+                    cache: false,
+                    success: function(response){
+                        if(response=='p'){
+                            $('.nameTextWrapper').html(boxval);
+                            $('.nameTextWrapper').show();
+                        }
+                    }
+                });
+
             });
 
             $(document).mouseup(function()
@@ -54,8 +66,19 @@
             $(".descriptionEditBox").change(function(){
                 $('.editName').hide();
                 var boxval=$(".descriptionEditBox").val();
-                $('.descriptionTextWrapper').html(boxval);
-                $('.descriptionTextWrapper').show();
+                var dataString = 'description='+ boxval+'&type=2';
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/smartCalendar/index.php/test/updateUserProfile",
+                    data: dataString,
+                    cache: false,
+                    success: function(response){
+                        if(response=='p'){
+                            $('.descriptionTextWrapper').html(boxval);
+                            $('.descriptionTextWrapper').show();
+                        }
+                    }
+                });
             });
 
             $(document).mouseup(function()
@@ -82,8 +105,19 @@
             $(".emailEditBox").change(function(){
                 $('.editEmail').hide();
                 var boxval=$(".emailEditBox").val();
-                $('.emailTextWrapper').html(boxval);
-                $('.emailTextWrapper').show();
+                var dataString = 'emails='+ boxval+'&type=3';
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/smartCalendar/index.php/test/updateUserProfile",
+                    data: dataString,
+                    cache: false,
+                    success: function(response){
+                        if(response=='p'){
+                            $('.emailTextWrapper').html(boxval);
+                            $('.emailTextWrapper').show();
+                        }
+                    }
+                });
             });
 
             $(document).mouseup(function()
@@ -110,8 +144,19 @@
             $(".webPageEditBox").change(function(){
                 $('.editWebPage').hide();
                 var boxval=$(".webPageEditBox").val();
-                $('.webPageTextWrapper').html(boxval);
-                $('.webPageTextWrapper').show();
+                var dataString = 'webPages='+ boxval+'&type=4';
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/smartCalendar/index.php/test/updateUserProfile",
+                    data: dataString,
+                    cache: false,
+                    success: function(response){
+                        if(response=='p'){
+                            $('.webPageTextWrapper').html(boxval);
+                            $('.webPageTextWrapper').show();
+                        }
+                    }
+                });
             });
 
             $(document).mouseup(function()
@@ -138,8 +183,19 @@
             $(".phoneEditBox").change(function(){
                 $('.editPhone').hide();
                 var boxval=$(".phoneEditBox").val();
-                $('.phoneTextWrapper').html(boxval);
-                $('.phoneTextWrapper').show();
+                var dataString = 'phoneNumbers='+ boxval+'&type=5';
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/smartCalendar/index.php/test/updateUserProfile",
+                    data: dataString,
+                    cache: false,
+                    success: function(response){
+                        if(response=='p'){
+                            $('.phoneTextWrapper').html(boxval);
+                            $('.phoneTextWrapper').show();
+                        }
+                    }
+                });
             });
 
             $(document).mouseup(function()
@@ -192,28 +248,28 @@
           </div>
         <div id="descriptionBox">
               <a href="#"class="editDescriptionLink" title="Edit">Edit</a>
-              <div class="descriptionTextWrapper">Hello amine</div>
+              <div class="descriptionTextWrapper"><?php echo $description;?></div>
               <div class="editDescription" style="display:none" >
                   <textarea class="descriptionEditBox" cols="26" rows="10"></textarea>
               </div>
           </div>
           <div id="emailBox">
               <a href="#"class="editEmailLink" title="Edit">Edit</a>
-              <div class="emailTextWrapper">Hello amine</div>
+              <div class="emailTextWrapper"><?php echo $emails;?></div>
               <div class="editEmail" style="display:none" >
                   <textarea class="emailEditBox" cols="26" rows="3"></textarea>
               </div>
           </div>
           <div id="webPageBox">
               <a href="#"class="editWebPageLink" title="Edit">Edit</a>
-              <div class="webPageTextWrapper">Hello amine</div>
+              <div class="webPageTextWrapper"><?php echo $webPages;?></div>
               <div class="editWebPage" style="display:none" >
                   <textarea class="webPageEditBox" cols="26" rows="3"></textarea>
               </div>
          </div>
           <div id="phoneBox">
               <a href="#"class="editPhoneLink" title="Edit">Edit</a>
-              <div class="phoneTextWrapper">Hello amine</div>
+              <div class="phoneTextWrapper"><?php echo $phoneNumbers;?></div>
               <div class="editPhone" style="display:none" >
                   <textarea class="phoneEditBox" cols="26" rows="3"></textarea>
               </div>
