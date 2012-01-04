@@ -28,6 +28,20 @@ class Userprofiles extends CI_Model{
         return $query;
     }
 
+    function getProfile($userId){
+        $query=$this->db->get_where('userProfiles', array('userId'=>$userId));
+        $data=array();
+        if($query->num_rows()==1){
+            foreach ($query->result() as $row){
+                 $data['description']=$row->description;
+                 $data['emails']=$row->emails;
+                 $data['webPages']=$row->webPages;
+                 $data['phoneNumbers']=$row->phoneNumbers;
+            }
+        }
+        return $data;
+    }
+
     /**
      * creates a blank profile
      * @return true or false based on success of the operation
@@ -41,8 +55,63 @@ class Userprofiles extends CI_Model{
      * Update a user profile
      * @param data array of elements to be updated
      */
-    function updateProfile($data){
-
+    function updateProfile(){
+        $type=$this->input->get_post('type');
+        $type=$this->input->_clean_input_data($type);
+        $where=array('userId'=>2);
+        switch ($type){
+            case 1:
+                $name=$this->input->get_post('name');
+                $name=$this->input->_clean_input_data($name);
+                $data=array('name'=>$name);
+               // $query=$this->db->update('userProfiles', $data, $where);
+                echo "p";
+                break;
+            case 2:
+                $description=$this->input->get_post('description');
+                $description=$this->input->_clean_input_data($description);
+                $data=array('description'=>$description);
+                $query=$this->db->update('userProfiles', $data, $where);
+                if($query==TRUE){
+                    echo "p";
+                }else{
+                    echo "f";
+                }
+                break;
+            case 3:
+                $emails=$this->input->get_post('emails');
+                $emails=$this->input->_clean_input_data($emails);
+                $data=array('emails'=>$emails);
+                $query=$this->db->update('userProfiles', $data, $where);
+                if($query==TRUE){
+                    echo "p";
+                }else{
+                    echo "f";
+                }
+                break;
+            case 4:
+                $webPages=$this->input->get_post('webPages');
+                $webPages=$this->input->_clean_input_data($webPages);
+                $data=array('webPages'=>$webPages);
+                $query=$this->db->update('userProfiles', $data, $where);
+                if($query==TRUE){
+                    echo "p";
+                }else{
+                    echo "f";
+                }
+                break;
+            case 5:
+                $phoneNumbers=$this->input->get_post('phoneNumbers');
+                $phoneNumbers=$this->input->_clean_input_data($phoneNumbers);
+                $data=array('phoneNumbers'=>$phoneNumbers);
+                $query=$this->db->update('userProfiles', $data, $where);
+                if($query==TRUE){
+                    echo "p";
+                }else{
+                    echo "f";
+                }
+                break;
+        }
     }
 
     /**

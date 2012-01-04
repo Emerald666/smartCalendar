@@ -18,10 +18,15 @@ class Test extends CI_Controller {
 
 	public function index()
 	{
-            $this->load->model('gmail');
-            $this->gmail->getNewMail();
-          // $this->load->view("modifyProfile_view");
+           $this->load->model('userprofiles');
+           $data=$this->userprofiles->getProfile(2);
+           $this->load->view("modifyProfile_view", $data);
 	}
+        public function updateUserProfile(){
+            $this->load->model('userprofiles');
+            $this->userprofiles->updateProfile();
+
+        }
         public function testKeys(){
             $this->load->model('keys');
             $query=$this->keys->addKey('test2');
@@ -33,5 +38,13 @@ class Test extends CI_Controller {
 
             echo "hello world";
         }
+       public function getEmails(){
+           $this->load->model('gmail');
+           $this->gmail->getNewMail();
+       }
+       public function getEvents(){
+           $this->load->model('calendar');
+           $this->calendar->getCalendarEvents();
+       }
 
 }
