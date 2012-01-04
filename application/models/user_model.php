@@ -24,12 +24,17 @@ class User_model extends CI_Model {
          */
         function create_user()
 	{
+                $emailVar=$this->input->post('email');
+                $passwordVar= md5($this->input->post('password'));
 
-		if( $this->is_key_valid( $this->input->post('key') )  ){
+
+                $this->load->model('keys');
+                $query = $this->keys->verifyKey($emailVar, $this->input->post('key'));
+		if( $query  ){
 			$new_user = array(
 			
-			'email' => $this->input->post('email'),			
-			'password' => md5($this->input->post('password'))		//md5	
+			'email' => $emailVar,
+			'password' => $passwordVar		//md5
 				
 			);
 		
@@ -42,17 +47,17 @@ class User_model extends CI_Model {
 		
 	}
 
-        /*
-         * checks wether the key is valid
-         * @return bool true on success, false on failure
-         */
-	function is_key_valid($key){
-		/*$this->db->where('key', $key);
-		$query = $this->db->get('keys');
-		return ($query->num_rows > 0);*/
-                return true;
-	
-	}
+       function get_id($email){
+                $this->db->where('email', $email);
+                $this->db->select('id');
+                $query = $this->db->get('users');
+                if ($query->num_rows() == 1){
+                          $row = $query->row();
+                          return $row->id;
+
+                }else
+                    return null;
+       }
 
         /*
          * checks that the email and password submitted by the user

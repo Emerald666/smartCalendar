@@ -25,8 +25,7 @@ class User_controller extends CI_Controller {
 	{
 		
 		$this->load->view('login_form');
-                
-	}
+        }
 
         /*
          * open the signup view
@@ -44,8 +43,7 @@ class User_controller extends CI_Controller {
          */
 	function add_user(){
 
-            $this->load->helper(array('form', 'url'));
-            $this->load->library('form_validation');
+            
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
             $this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
@@ -55,6 +53,7 @@ class User_controller extends CI_Controller {
             if($this->form_validation->run() == FALSE)
             {
                     $this->load->view('signup_form');
+                    
             }
 
             else
@@ -63,14 +62,27 @@ class User_controller extends CI_Controller {
                     $this->load->model('user_model');
                     $query = $this->user_model->create_user();
                     if($query){
-                            $this->load->view('signup_success');    //
-                    }else
+                            $this->load->model('userprofiles');
+                            $id = $this->getID();
+                            $this->userprofiles->createBlankProfile(array('userId'=>$id));
+                            $data=$this->userprofiles->getProfile($id);
+                            $this->load->view("modifyProfile_view", $data);
+                            //$this->load->view('signup_success');
+                    }else{
                             echo 'INVALID KEY';
                             $this->load->view('signup_form');
+                    }
 
             }
          }
-	
+
+         function getID(){
+                $this->load->model('user_model');
+                return $this->user_model->get_id($this->input->post('email'));
+                //return $this->user_model->get_id('demo@demo.ca');
+         }
+
+
 	/*
          * checks that the user is valid
          * open users_area view on success login
