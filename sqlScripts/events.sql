@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 09, 2012 at 01:06 AM
+-- Generation Time: Jan 09, 2012 at 07:49 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -30,8 +30,8 @@ CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
-  `start_date` int(11) NOT NULL,
-  `end_date` int(11) NOT NULL,
+  `start_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `end_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `description` varchar(1000) NOT NULL,
   `rank` int(11) NOT NULL,
   PRIMARY KEY (`id`)
