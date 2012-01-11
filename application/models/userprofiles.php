@@ -62,7 +62,7 @@ class Userprofiles extends CI_Model{
         $where=array('userId'=>2);
         switch ($type){
             case 1:
-                $name=$this->input->get_post('name');
+                $name=$this->input->get_post('te');
                 $name=$this->input->_clean_input_data($name);
                 $data=array('name'=>$name);
                 $query=$this->db->update('userProfiles', $data, $where);

@@ -40,11 +40,16 @@ class Test extends CI_Controller {
         }
        public function getEmails(){
            $this->load->model('gmail');
-           $this->gmail->getNewMail();
+           $this->gmail->getNewMail();//isValid(array('bla'=>'bla'));//
        }
        public function getEvents(){
            $this->load->model('calendar');
            $this->calendar->getCalendarEvents();
        }
+
+      public function facebookLogin(){
+          $this->load->model('facebook_model');
+          $this->facebook_model->getEvents();
+      }
 
 }
