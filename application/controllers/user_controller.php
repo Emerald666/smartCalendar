@@ -24,7 +24,8 @@ class User_controller extends CI_Controller {
 	function index()
 	{
 		
-		$this->load->view('login_form');
+		//$this->load->view('login_form');
+                echo base_url();
         }
 
         /*
