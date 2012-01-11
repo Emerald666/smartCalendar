@@ -52,4 +52,8 @@ class Test extends CI_Controller {
           $this->facebook_model->getEvents();
       }
 
+      public function testDatePicker(){
+          $this->load->view('datePickerTest');
+      }
+
 }
