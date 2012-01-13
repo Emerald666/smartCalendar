@@ -24,8 +24,8 @@ class User_controller extends CI_Controller {
 	function index()
 	{
 		
-		//$this->load->view('login_form');
-                echo base_url();
+		$this->load->view('login_form');
+                //echo base_url();
         }
 
         /*
@@ -67,6 +67,7 @@ class User_controller extends CI_Controller {
                             $id = $this->getID();
                             $this->userprofiles->createBlankProfile(array('userId'=>$id));
                             $data=$this->userprofiles->getProfile($id);
+                            $this->session->set_userdata('userId', $id);//****
                             $this->load->view("modifyProfile_view", $data);
                             //$this->load->view('signup_success');
                     }else{

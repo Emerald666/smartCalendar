@@ -74,4 +74,8 @@ class Test extends CI_Controller {
           $this->userprofiles->getHosts();
       }
 
+      public function getWelcome(){
+        $this->load->view('welcome');
+      }
+
 }
