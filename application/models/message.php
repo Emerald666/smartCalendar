@@ -31,34 +31,36 @@ class Message extends CI_Model {
      *
      */
 
-    function Validate($message){
+    function validate($message){
         //$message="Title: is amine\nLocation: hello\nStart time: 2012-12-31 21:51:39\nEnd time: 2012-12-31 21:51:37\nDescription: Nothing special\n hello\nrkfro ";
-        if(isContentInOrder($message)==FALSE){
+        if($this->isContentInOrder($message)==FALSE){
             return NULL;
         }
-        if(isDuplicateFree($message)==FALSE){
+        if($this->isDuplicateFree($message)==FALSE){
             return NULL;
         }
-        $pieces=getPieces($message);
+        $pieces=$this->getPieces($message);
         if(count($pieces)!=5){
             return NULL;
         }
         $count=0;
         $times=array();
         $data=array();
+        $usefulBits=array();
         foreach($pieces as $piece){
-            $usefulBit=splitPiece($piece);
+            $usefulBit=$this->splitPiece($piece);
+            array_push($usefulBits, $usefulBit);
             if($count==2 || $count==3){
                 if($count==2) $times['start']=$usefulBit;
                 else $times['end']=$usefulBit;
             }
-            echo $usefulBit;
-            echo "<br/>";
+            /*echo $usefulBit;
+            echo "<br/>";*/
             $count++;
         }
-        echo "Time<br/>";
+       // echo "Time<br/>";
         foreach($times as $time){
-            if(validateTime($time)==FALSE){
+            if($this->validateTime($time)==FALSE){
                 return NULL;
             }
         }
@@ -66,15 +68,14 @@ class Message extends CI_Model {
         if(strtotime($times['start'])>=strtotime($times['end'])){
             return NULL;
         }
-
-        $data['title']=$pieces[0];
-        $data['location']=$pieces[1];
-        $data['startTime']=$pieces[2];
-        $data['endTime']=$pieces[3];
-        $data['description']=$pieces[4];
-        echo "<br/>";
-        print_r($data);
-        echo "valid ".strtotime($time)."<br/>";
+        
+        $data['title']=$usefulBits[0];
+        $data['location']=$usefulBits[1];
+        $data['startTime']=strtotime($usefulBits[2]);
+        $data['endTime']=strtotime($usefulBits[3]);
+        $data['description']=$usefulBits[4];
+        
+        return $data;
     }
 
     /**

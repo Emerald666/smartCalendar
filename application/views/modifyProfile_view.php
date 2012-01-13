@@ -127,6 +127,45 @@
             });
             /////////////////////////////////////////////////
             //
+            //The host
+            ////////////////////////////////////////////////
+            $('.editHostLink').click(function(){
+               $('.hostTextWrapper').hide();
+               var data=$('.hostTextWrapper').html();
+               $('.editHost').show();
+               $('.hostEditBox').html(data);
+               $('.hostEditBox').focus();
+            });
+
+            $(".hostEditBox").mouseup(function(){
+                return false;
+            });
+
+            $(".hostEditBox").change(function(){
+                $('.editHost').hide();
+                var boxval=$(".hostEditBox").val();
+                var dataString = 'hosts='+ boxval+'&type=6';
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/smartCalendar/index.php/test/updateUserProfile",
+                    data: dataString,
+                    cache: false,
+                    success: function(response){
+                        if(response=='p'){
+                            $('.hostTextWrapper').html(boxval);
+                            $('.hostTextWrapper').show();
+                        }
+                    }
+                });
+            });
+
+            $(document).mouseup(function()
+            {
+                $('.editHost').hide();
+                $('.hostTextWrapper').show();
+            });
+            /////////////////////////////////////////////////
+            //
             //The websites
             ////////////////////////////////////////////////
             $('.editWebPageLink').click(function(){
@@ -212,20 +251,20 @@
               font-family:Arial, Helvetica, sans-serif;
               font-size:12px;
           }
-          #nameBox, #descriptionBox, #emailBox, #webPageBox, #phoneBox{
+          #nameBox, #descriptionBox, #emailBox, #webPageBox, #phoneBox, #hostBox{
             width:300px;
             margin:50px;
           }
-          .nameTextWrapper, .descriptionTextWrapper, .emailTextWrapper, .webPageTextWrapper, .phoneTextWrapper{
+          .nameTextWrapper, .descriptionTextWrapper, .emailTextWrapper, .webPageTextWrapper, .phoneTextWrapper, .hostTextWrapper{
             border:solid 1px #0099CC;
             padding:5px;
             width:200px;
           }
-          .editNameLink, .editDescriptionLink, .editEmailLink, .editWebPageLink, .editPhoneLink{
+          .editNameLink, .editDescriptionLink, .editEmailLink, .editWebPageLink, .editPhoneLink, .editHostLink{
            float:right
           }
 
-          .nameEditBox, .descriptionEditBox, .emailEditBox, .webPageEditBox, .phoneEditBox{
+          .nameEditBox, .descriptionEditBox, .emailEditBox, .webPageEditBox, .phoneEditBox, .hostEditBox{
             overflow: hidden;
             border:solid 1px #0099CC;
             font-size:12px;
@@ -258,6 +297,13 @@
               <div class="emailTextWrapper"><?php echo $emails;?></div>
               <div class="editEmail" style="display:none" >
                   <textarea class="emailEditBox" cols="26" rows="3"></textarea>
+              </div>
+          </div>
+          <div id="hostBox">
+              <a href="#"class="editHostLink" title="Edit">Edit</a>
+              <div class="hostTextWrapper"><?php echo $hosts;?></div>
+              <div class="editHost" style="display:none" >
+                  <textarea class="hostEditBox" cols="26" rows="3"></textarea>
               </div>
           </div>
           <div id="webPageBox">

@@ -38,6 +38,7 @@ class Userprofiles extends CI_Model{
                  $data['emails']=$row->emails;
                  $data['webPages']=$row->webPages;
                  $data['phoneNumbers']=$row->phoneNumbers;
+                 $data['hosts']=$row->hosts;
             }
         }
         return $data;
@@ -116,6 +117,17 @@ class Userprofiles extends CI_Model{
                     echo "f";
                 }
                 break;
+           case 6:
+                $hosts=$this->input->get_post('hosts');
+                $phoneNumbers=$this->input->_clean_input_data($hosts);
+                $data=array('hosts'=>$hosts);
+                $query=$this->db->update('userProfiles', $data, $where);
+                if($query==TRUE){
+                    echo "p";
+                }else{
+                    echo "f";
+                }
+                break;
         }
     }
 
@@ -131,6 +143,37 @@ class Userprofiles extends CI_Model{
         if(($numRowsBefore-$numRowsAfter)==1) return TRUE;
         return FALSE;
     }
+
+    function getHosts(){
+        $this->db->select('userId, hosts');
+        $query = $this->db->get('userProfiles');
+        $data=array();
+        foreach ($query->result() as $row){
+            $hosts = explode(",",$row->hosts);
+            for($i=0; $i<count($hosts); $i++){
+                $hosts[$i]=trim($hosts[$i]);
+            }
+        }
+        array_push($data,array('userId'=>$row->userId,'hosts'=>$hosts));
+        return $data;
+    }
+
+
+    function getEmails(){
+        $this->db->select('userId,emails');
+        $query=$this->db->get('userProfiles');
+        $data=array();
+        foreach ($query->result() as $row){
+            $emails=explode(",",$row->emails);
+            for($i=0; $i<count($emails); $i++){
+                $emails[$i]=trim($emails[$i]);
+            }
+            array_push($data,array('userId'=>$row->userId,'emails'=>$emails));
+        }
+
+        return $data;
+    }
+
 
 
 }

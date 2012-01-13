@@ -55,7 +55,7 @@
 
 <div><input type="submit" value="Submit" /></div>
 
-</form>
+<?php echo form_close()?>
 
 </body>
 </html>

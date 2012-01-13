@@ -1,5 +1,21 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
 
+* @property CI_Loader $load
+
+* @property CI_Form_validation $form_validation
+
+* @property CI_Input $input
+
+* @property CI_Email $email
+
+* @property CI_Session $session
+
+* @property CI_DB_active_record $db
+
+* @property CI_DB_forge $dbforge
+
+*/
 class Facebook_model extends CI_Model{
 
     function getEvents(){
@@ -49,9 +65,10 @@ class Facebook_model extends CI_Model{
                 'query' => $fql,
             ));
             $html = '';
+            $events=array();
             foreach($ret_obj as $key)
             {
-                $facebook_url = 'https://www.facebook.com/event.php?eid=' . $key['eid'];
+               /* $facebook_url = 'https://www.facebook.com/event.php?eid=' . $key['eid'];
 
                 $start_time = date('M j, Y \a\t g:i A', $key['start_time']);
                 $end_time = date('M j, Y \a\t g:i A', $key['end_time']);
@@ -70,11 +87,25 @@ class Facebook_model extends CI_Model{
                             <br/><br/>
                         </span>
                     </div>
-                ';
+                ';*/
+                $event=array(
+                    'title'=>$key['name'],
+                    'location'=>$key['location'],
+                    'startTime'=>$key['start_time'],
+                    'endTime'=>$key['end_time'],
+                    'description'=>$key['description']
+                    );
+                $userId=$this->validateHost($key['host']);
+                if($userId!=-1){
+                    $event['userId']=$userId;
+                    array_push($events, $event);
+                }
             }
 
-            echo $html;
-
+           /*echo $html;
+             print_r($events);
+            */
+            return $events;
         }else{
             $login_url_params=array(
                 'scope'=>'read_stream, publish_stream, offline_access, manage_pages, user_events',
@@ -86,5 +117,17 @@ class Facebook_model extends CI_Model{
             header("Location: {$login_url}");
             exit();
         }
+    }
+
+    function validateHost($host){
+        $this->load->model('userprofiles');
+        $elements=$this->userprofiles->getHosts();
+        $userId=-1;
+        foreach($elements as $element){
+            if(in_array($host, $element['hosts'])==TRUE){
+                return $element['userId'];
+            }
+        }
+        return $userId;
     }
 }

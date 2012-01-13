@@ -53,7 +53,25 @@ class Test extends CI_Controller {
       }
 
       public function testDatePicker(){
-          $this->load->view('datePickerTest');
+          $this->load->view('event_form');
+      }
+
+      public function addEvent(){
+         $this->form_validation->set_rules('title', 'Title','trim|required|xss_clean');
+         $this->form_validation->set_rules('startTime', 'Start time','trim|required|xss_clean');
+         $this->form_validation->set_rules('endTime', 'End time','trim|required|xss_clean');
+         $this->form_validation->set_rules('description', 'Description','trim|required|xss_clean');
+         if($this->form_validation->run() == FALSE){
+            $this->testDatePicker();
+         }else{
+            echo "hello";
+         }
+         
+      }
+
+      public function getHosts(){
+          $this->load->model('userprofiles');
+          $this->userprofiles->getHosts();
       }
 
 }

@@ -38,7 +38,8 @@ class Gmail extends CI_Model{
 
                 /* put the newest emails on top */
                 rsort($emails);
-               
+
+                $data=array();
                 /* for every email... */
                 foreach($emails as $email_number) {
 
@@ -49,26 +50,41 @@ class Gmail extends CI_Model{
                         $message = imap_fetchbody($inbox,$email_number,1);
 
 
-                        /* output the email header information */
+                        /* output the email header information 
                         $output.= '<div class="toggler '.($overview[0]->seen ? 'read' : 'unread').'">';
                         $output.= '<span class="subject">'.$overview[0]->subject.'</span> ';
-                        $output.= '<span class="from">'.$overview[0]->from.'</span>';
+                        $output.= '<span class="from">'.$overview[0]->from.'</span>';*/
 
-                        if($this->isValid(array('from'=>$overview[0]->from))==TRUE){
-                            echo 'TRUE <br/>';
-                        }else{
-                            echo "FALSE <br/>";
+                        /*if($this->isValid(array('from'=>$overview[0]->from))==TRUE){
+                            //array_push($data, array('from'=>$overview[0]->from, 'message'=>$message));
+                            $entry=$this->isWellFormedMessage($message);      
+                            if($entry!=NULL){
+                                $from=explode('<',$overview[0]->from);
+                                $from=str_replace(">","",$from[1]);
+                                $entry['host']=$from;
+                                array_push($data, $entry);
+                            }
+                        }*/
+                        $userId=$this->isValid(array('from'=>$overview[0]->from));
+                        if($userId!=-1){
+                            $entry=$this->isWellFormedMessage($message);
+                            if($entry!=NULL){
+                                $entry['userId']=$userId;
+                                array_push($data, $entry);
+                            }
                         }
-                        $output.= '<span class="date">on '.$overview[0]->date.'</span>';
-                        $output.= '</div>';
+                        
+                       /* $output.= '<span class="date">on '.$overview[0]->date.'</span>';
+                        $output.= '</div>';*/
 
                         /* output the email body */
-                        $output.= '<div class="body">'.$message.'</div>';
-                        $output.='<br/>'; 
+                        /*$output.= '<div class="body">'.$message.'</div>';
+                        $output.='<br/>'; */
 
                 }
 
                 //echo $output;
+                return $data;
         }
 
        // imap_mail_move($inbox,'1','ReadMessages');
@@ -87,13 +103,17 @@ class Gmail extends CI_Model{
      * @return boolean
      */
     function isValid($data){
-        $data['from']=str_replace(" ","",$data['from']);
-        $data['from']=strip_tags($data['from']);
-        $data['from']=mysql_escape_string($data['from']);
-        print_r($data);
-        echo "<br/><br/>";
-        $this->load->model('user_model');
-        return $this->user_model->validateEmail($data['from']);
+        $this->load->model('userprofiles');
+        $elements=$this->userprofiles->getEmails();
+        $from=explode('<',$data['from']);
+        $from=str_replace(">","",$from[1]);
+        $userId=-1;
+        foreach($elements as $element){
+            if(in_array($from, $element['emails'])==TRUE){
+                return $element['userId'];
+            }
+        }
+        return $userId;
     }
 
     /**
@@ -102,17 +122,10 @@ class Gmail extends CI_Model{
      * @return boolean
      */
     function isWellFormedMessage($message){
-        return true;
+       $this->load->model('message');
+       return $this->message->validate($message);
     }
 
-    /**
-     * Adds an event to the db
-     * @param array contains all the fields of the event
-     * @return boolean
-     */
-    function addEvent($data){
-        return true;
-    }
 
     /*
      * Sends the error message to the sender when the email is not valid
