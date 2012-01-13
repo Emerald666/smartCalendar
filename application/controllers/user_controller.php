@@ -102,9 +102,17 @@ class User_controller extends CI_Controller {
 				'logged_in' => true
 			);
 			$this->session->set_userdata($data);
+			
+			$userId = $this->getID();
+			$this->session->set_userdata('userId', $userId);
+			
+			$this->load->model('userprofiles');
+   			$data=$this->userprofiles->getProfile($userId);
+   			$this->load->view("modifyProfile_view", $data);
+					
                         
-                        $this->load->view('users_area');
-			//redirect('siteprofile page');
+                        //$this->load->view('users_area');
+						//redirect('siteprofile page');
 		}
 		else // incorrect username or password
 		{
