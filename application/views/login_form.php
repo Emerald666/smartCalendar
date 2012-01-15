@@ -5,7 +5,6 @@
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Login!</title>
-        <title>Welcome</title>
         <link rel="stylesheet" href=" <?php echo base_url("/application/libraries/css/960.css");?>" type="text/css"  media="screen"/>
         <link rel="stylesheet" href=" <?php echo base_url("/application/libraries/css/reset.css");?>" type="text/css"  media="screen"/>
         <link rel="stylesheet" href=" <?php echo base_url("/application/libraries/css/text.css");?>" type="text/css"  media="screen"/>
