@@ -32,7 +32,7 @@
                    echo "<td>" . htmlspecialchars ($row['location'],ENT_QUOTES ) . "</td>";
                     echo "<td>" . date ("F j, Y, g:i a",$row['startTime']) . "</td>";
                     echo "<td>" . date ("F j, Y, g:i a", $row['endTime']) . "</td>";
-                  echo "<td>" . htmlspecialchars ($row['description'],ENT_QUOTES ) . "</td>";
+                  echo "<td>" . nl2br(htmlspecialchars ($row['description'],ENT_QUOTES )) . "</td>";
                   echo "</tr>";
             }
 

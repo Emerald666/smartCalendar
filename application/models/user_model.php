@@ -15,11 +15,18 @@
 
 */
 
+/**
+ * @name: user_model.php
+ * @author Mouhyi
+ *
+ */
+
 class User_model extends CI_Model {
 
 
         /**
-         * add the user to the 'users' table
+         * add  user to the 'users' table
+         * @author Mouhyi
          * @return bool true on success, false on failure
          */
         function create_user()
@@ -47,6 +54,13 @@ class User_model extends CI_Model {
 		
 	}
 
+        /**
+         *  retrieve user id corresponding to the email prameter
+         * @author Mouhyi
+         * @param string $email
+         * @return int id on success, null on failure
+         */
+
         function get_id($email){
             $this->db->where('email', $email);
             $this->db->select('id');
@@ -63,6 +77,7 @@ class User_model extends CI_Model {
         /**
          * checks that the email and password submitted by the user
          * exist in the 'users' table
+         * @author Mouhyi
          * @return bool true on success, false on failure
          */
 	function validate()
@@ -76,9 +91,11 @@ class User_model extends CI_Model {
 
         /**
          * Validates an email and helps the gmail model
-         * @param  string email or fragement of an email
+         * @author Mouhyi
+         * @param  string $email
          * @return bool true or false
          */
+        
         function validateEmail($email){
             $query=$this->db->query("SELECT 'email' FROM `users` WHERE email REGEXP '.*$email.*'");
             return ($query->num_rows == 1);
