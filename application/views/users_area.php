@@ -39,7 +39,6 @@
        <style type="text/css">
           body{
                background: transparent url(<?php echo base_url("/application/libraries/images/noise.png");?>) repeat 0 0;
-               margin-top:50px;
             }
           h1{
                font-family: Shadows Into Light, Arial, Helvetica, sans-serif;
@@ -47,11 +46,8 @@
            }
           h2{
                font-family: Shadows Into Light, Arial, Helvetica, sans-serif;
-               font-size: 48px;
+               font-size: 40px;
            }
-           #container{
-               margin-top: 40px;
-          }
          label{
             margin-top:30px;
             padding:12px;
@@ -104,7 +100,7 @@
         }
 
         #addContainer, #eventForm{
-            margin-bottom:25px;
+            margin-bottom:10px;
         }
         
         .styleContainer{
@@ -119,6 +115,7 @@
             height:20px;
             margin-top:2px;
             text-align:center;
+            border-radius:2px;
         }
 
         .eventContainer{
@@ -141,7 +138,12 @@
         .content{
             display:none;
         }
-
+        .dayContainer{
+            font-size:16px;
+            border-bottom-style:solid;
+            border-width:1px;
+            margin-bottom:15px;
+        }
 
        </style>
     </head>
@@ -179,6 +181,9 @@
             <div id="EventsHeader" class="grid_16 push_6">
                 <h2>Events!</h2>
             </div>
+            <div class="dayContainer grid_16">
+                <span><b>Friday Jan 2200</b></span>
+            </div>
             <div class="event grid_16">
                 <div class="styleContainer grid_2 alpha">
                      <span>12:00-14:00</span>
@@ -203,7 +208,7 @@
                     <a href="#" class="button on" title="Edit event"><span class="icon icon145"></span></a>
                 </div>
             </div>
-             <div class="event grid_16">
+            <div class="event grid_16">
                 <div class="styleContainer grid_2 alpha">
                     <span>12:00-16:00</span>
                 </div>
@@ -211,10 +216,112 @@
                     <p class="title">Cast in Bronze: A Workshop in Exploring and Creating Bronze Sculpture</p>
                     <div class="content">
                         <ul>
-                            <li><b>Host:</b></li>
-                            <li><b>Where:</b></li>
-                            <li><b>When:</b></li>
-                            <li><b>Description:</b></li>
+                            <li><b>Host: </b>Jason Derouloux</li>
+                            <li><b>Where: </b>Wherever you want</li>
+                            <li><b>When: </b>12:00-16:00</li>
+                            <li><b>Description:</b>psum is that it has a more-or-less normal distribution of letters,
+                                as opposed to using 'Content here, content here', making it look like readable English.
+                                Many desktop publishing packages and web page editors now use Lorem Ipsum as their default
+                                model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                                Various versions have evolved over the years, someti</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="commandContainer grid_1 alpha">
+                     <a href="#" class="button on" title="Edit event"><span class="icon icon145"></span></a>
+                </div>
+            </div>
+           <div class="event grid_16">
+                <div class="styleContainer grid_2 alpha">
+                     <span>18:00-19:00</span>
+                </div>
+                <div class="eventContainer grid_13 alpha">
+                    <p class="title">Lorem Ipsum is simply dummy text of the printing and typesettin</p>
+                    <div class="content">
+                        <ul>
+                            <li><b>Host: </b>Jason Derouloux</li>
+                            <li><b>Where: </b>Wherever you want</li>
+                            <li><b>When: </b>12:00-14:00</li>
+                            <li><b>Description: </b> can accomplish this, but it's all or nothing.
+                                I click one minimize button, and everything goes. How can I contain
+                                it to just toggle items with a certain class name that are children of
+                                the div that the minimize button is in? I've tried .parent(), .child(), .next(),
+                                .prev(). I've thrown everything at it that I know. Now I turn to you, kind sirs (or madams).
+                                What am I doing wrong? Here's the ul I'm trying to run it on.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="commandContainer grid_1 alpha">
+                    <a href="#" class="button on" title="Edit event"><span class="icon icon145"></span></a>
+                </div>
+            </div>
+            <div class="event grid_16">
+                <div class="styleContainer grid_2 alpha">
+                    <span>20:00-23:00</span>
+                </div>
+                <div class="eventContainer grid_13 alpha">
+                    <p class="title">leap into electronic typesetting, remaining essentially unchanged. It was popularised
+                        in the 1960s with the release of Letraset sheets conta</p>
+                    <div class="content">
+                        <ul>
+                            <li><b>Host: </b>Jason Derouloux</li>
+                            <li><b>Where: </b>Wherever you want</li>
+                            <li><b>When: </b>12:00-16:00</li>
+                            <li><b>Description:</b>psum is that it has a more-or-less normal distribution of letters,
+                                as opposed to using 'Content here, content here', making it look like readable English.
+                                Many desktop publishing packages and web page editors now use Lorem Ipsum as their default
+                                model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                                Various versions have evolved over the years, someti</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="commandContainer grid_1 alpha">
+                     <a href="#" class="button on" title="Edit event"><span class="icon icon145"></span></a>
+                </div>
+            </div>
+            <div class="dayContainer grid_16">
+                <span><b>Friday Jan 2200</b></span>
+            </div>
+            <div class="event grid_16">
+                <div class="styleContainer grid_2 alpha">
+                    <span>12:00-16:00</span>
+                </div>
+                <div class="eventContainer grid_13 alpha">
+                    <p class="title">Richard McClintock, a Latin professor at Hampden-Sydney College in </p>
+                    <div class="content">
+                        <ul>
+                            <li><b>Host: </b>Jason Derouloux</li>
+                            <li><b>Where: </b>Wherever you want</li>
+                            <li><b>When: </b>12:00-16:00</li>
+                            <li><b>Description:</b>psum is that it has a more-or-less normal distribution of letters,
+                                as opposed to using 'Content here, content here', making it look like readable English.
+                                Many desktop publishing packages and web page editors now use Lorem Ipsum as their default
+                                model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                                Various versions have evolved over the years, someti</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="commandContainer grid_1 alpha">
+                     <a href="#" class="button on" title="Edit event"><span class="icon icon145"></span></a>
+                </div>
+            </div>
+            <div class="event grid_16">
+                <div class="styleContainer grid_2 alpha">
+                    <span>16:00-22:00</span>
+                </div>
+                <div class="eventContainer grid_13 alpha">
+                    <p class="title">There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                        alteration in some fo</p>
+                    <div class="content">
+                        <ul>
+                            <li><b>Host: </b>Jason Derouloux</li>
+                            <li><b>Where: </b>Wherever you want</li>
+                            <li><b>When: </b>12:00-16:00</li>
+                            <li><b>Description:</b>psum is that it has a more-or-less normal distribution of letters,
+                                as opposed to using 'Content here, content here', making it look like readable English.
+                                Many desktop publishing packages and web page editors now use Lorem Ipsum as their default
+                                model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                                Various versions have evolved over the years, someti</li>
                         </ul>
                     </div>
                 </div>
