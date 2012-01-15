@@ -82,4 +82,8 @@ class Test extends CI_Controller {
           $this->load->view('users_area');
       }
 
+      public function modifyEvent(){
+          $this->load->view('modifyEvent');
+      }
+
 }

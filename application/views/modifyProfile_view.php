@@ -284,7 +284,7 @@
             border:solid 1px #0099CC;
             font-size:12px;
             font-family:Arial, Helvetica, sans-serif;
-            padding:5px
+            padding:5px;
             border-radius:3px;
           }
 

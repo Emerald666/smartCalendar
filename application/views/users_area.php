@@ -158,7 +158,7 @@
                 </a>
             </div>
             <div id="addContainer" class="grid_2">
-                <a href="#" class="button on" title="Add event"><span class="icon icon3"></span></a>
+                <a href="#" class="button on" title="Add event"><span class="icon icon3"></span><span>New</span></a>
             </div>
             <div id="eventForm" class="grid_14 alpha">
                 <?php
