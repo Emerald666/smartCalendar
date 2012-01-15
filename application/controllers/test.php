@@ -78,4 +78,8 @@ class Test extends CI_Controller {
         $this->load->view('welcome');
       }
 
+      public function getUserPage(){
+          $this->load->view('users_area');
+      }
+
 }

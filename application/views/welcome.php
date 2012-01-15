@@ -54,7 +54,6 @@
         </style>
     </head>
     <body>
-
         <div id ="container" class="container_16">
             <h1 id="message" class="prefix_2">Welcome to Smart Calendar</h1>
             <a href="Www.google.com">

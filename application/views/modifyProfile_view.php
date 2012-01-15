@@ -4,7 +4,13 @@
   <head>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <link rel="stylesheet" href=" <?php echo base_url("/application/libraries/css/960.css");?>" type="text/css"  media="screen"/>
+        <link rel="stylesheet" href=" <?php echo base_url("/application/libraries/css/reset.css");?>" type="text/css"  media="screen"/>
+        <link rel="stylesheet" href=" <?php echo base_url("/application/libraries/css/text.css");?>" type="text/css"  media="screen"/>
+        <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'/>
+        <link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'/>
+        <link rel="stylesheet" href=" <?php echo base_url("/application/libraries/css/css3-buttons.css");?>" type="text/css"  media="screen">
       <script type="text/javascript">
           $(document).ready(function() {
             ///////////////////////////////////////////////
@@ -248,18 +254,27 @@
           </script>
       <style type="text/css">
           body{
-              font-family:Arial, Helvetica, sans-serif;
-              font-size:12px;
+              margin-top:30px;
+              font-family:Helvetica, Arial, sans-serif;
+              background: transparent url(<?php echo base_url("/application/libraries/images/noise.png");?>) repeat 0 0;
+              font-size:13px;
           }
-          #nameBox, #descriptionBox, #emailBox, #webPageBox, #phoneBox, #hostBox{
-            width:300px;
-            margin:50px;
-          }
-          .nameTextWrapper, .descriptionTextWrapper, .emailTextWrapper, .webPageTextWrapper, .phoneTextWrapper, .hostTextWrapper{
-            border:solid 1px #0099CC;
-            padding:5px;
-            width:200px;
-          }
+          h1{
+               font-family: Shadows Into Light, Arial, Helvetica, sans-serif;
+               font-size: 68px;
+               margin-left:-90px;
+           }
+            #nameBox, #descriptionBox, #emailBox, #webPageBox, #phoneBox, #hostBox {
+                width: 400px;
+                margin-left:-20px;
+                margin-bottom:20px;
+            }
+            .nameTextWrapper, .descriptionTextWrapper, .emailTextWrapper, .webPageTextWrapper, .phoneTextWrapper, .hostTextWrapper {
+                border: solid 1px #0099CC;
+                padding: 5px;
+                width: 320px;
+                border-radius:3px;
+            }
           .editNameLink, .editDescriptionLink, .editEmailLink, .editWebPageLink, .editPhoneLink, .editHostLink{
            float:right
           }
@@ -270,56 +285,66 @@
             font-size:12px;
             font-family:Arial, Helvetica, sans-serif;
             padding:5px
+            border-radius:3px;
           }
 
-         textarea { resize:both; }
+         textarea {
+           resize:both;
+           background: transparent url(<?php echo base_url("/application/libraries/images/noise.png");?>) repeat 0 0;
+         }
+         .button{
+          margin:0px;
+        }
       </style>
 
   </head>
   <body>
-      <div id="container">
-          <div id="nameBox">
-              <a href="#"class="editNameLink" title="Edit">Edit</a>
-              <div class="nameTextWrapper"><?php echo $name;?></div>
-              <div class="editName" style="display:none" >
-                  <textarea class="nameEditBox" cols="26" rows="3"></textarea>
+      <div id="container" class="container_16">
+          <div id="fieldsContainer" class="grid_16 push_4">
+              <h1>Update Your Profile</h1>
+              <div id="nameBox">
+                  <a href="#"class="editNameLink button on" title="Edit"><span class="icon icon145"></span></a>
+                  <div class="nameTextWrapper"><?php echo $name;?></div>
+                  <div class="editName" style="display:none" >
+                      <textarea class="nameEditBox" cols="43" rows="3"></textarea>
+                  </div>
               </div>
-          </div>
-        <div id="descriptionBox">
-              <a href="#"class="editDescriptionLink" title="Edit">Edit</a>
-              <div class="descriptionTextWrapper"><?php echo $description;?></div>
-              <div class="editDescription" style="display:none" >
-                  <textarea class="descriptionEditBox" cols="26" rows="10"></textarea>
+            <div id="descriptionBox">
+                  <a href="#"class="editDescriptionLink button on" title="Edit"><span class="icon icon145"></span></a>
+                  <div class="descriptionTextWrapper"><?php echo $description;?></div>
+                  <div class="editDescription" style="display:none" >
+                      <textarea class="descriptionEditBox" cols="43" rows="10"></textarea>
+                  </div>
               </div>
-          </div>
-          <div id="emailBox">
-              <a href="#"class="editEmailLink" title="Edit">Edit</a>
-              <div class="emailTextWrapper"><?php echo $emails;?></div>
-              <div class="editEmail" style="display:none" >
-                  <textarea class="emailEditBox" cols="26" rows="3"></textarea>
+              <div id="emailBox">
+                  <a href="#"class="editEmailLink button on" title="Edit"><span class="icon icon145"></span></a>
+                  <div class="emailTextWrapper"><?php echo $emails;?></div>
+                  <div class="editEmail" style="display:none" >
+                      <textarea class="emailEditBox" cols="43" rows="3"></textarea>
+                  </div>
               </div>
-          </div>
-          <div id="hostBox">
-              <a href="#"class="editHostLink" title="Edit">Edit</a>
-              <div class="hostTextWrapper"><?php echo $hosts;?></div>
-              <div class="editHost" style="display:none" >
-                  <textarea class="hostEditBox" cols="26" rows="3"></textarea>
+              <div id="hostBox">
+                  <a href="#"class="editHostLink button on" title="Edit"><span class="icon icon145"></span></a>
+                  <div class="hostTextWrapper"><?php echo $hosts;?></div>
+                  <div class="editHost" style="display:none" >
+                      <textarea class="hostEditBox" cols="43" rows="4"></textarea>
+                  </div>
               </div>
-          </div>
-          <div id="webPageBox">
-              <a href="#"class="editWebPageLink" title="Edit">Edit</a>
-              <div class="webPageTextWrapper"><?php echo $webPages;?></div>
-              <div class="editWebPage" style="display:none" >
-                  <textarea class="webPageEditBox" cols="26" rows="3"></textarea>
-              </div>
-         </div>
-          <div id="phoneBox">
-              <a href="#"class="editPhoneLink" title="Edit">Edit</a>
-              <div class="phoneTextWrapper"><?php echo $phoneNumbers;?></div>
-              <div class="editPhone" style="display:none" >
-                  <textarea class="phoneEditBox" cols="26" rows="3"></textarea>
-              </div>
-         </div>
+              <div id="webPageBox">
+                  <a href="#"class="editWebPageLink button on" title="Edit"><span class="icon icon145"></span></a>
+                  <div class="webPageTextWrapper"><?php echo $webPages;?></div>
+                  <div class="editWebPage" style="display:none" >
+                      <textarea class="webPageEditBox" cols="43" rows="3"></textarea>
+                  </div>
+             </div>
+              <div id="phoneBox">
+                  <a href="#"class="editPhoneLink button on" title="Edit"><span class="icon icon145"></span></a>
+                  <div class="phoneTextWrapper"><?php echo $phoneNumbers;?></div>
+                  <div class="editPhone" style="display:none" >
+                      <textarea class="phoneEditBox" cols="43" rows="3"></textarea>
+                  </div>
+             </div>
+            </div>
       </div>
   </body>
 </html>
