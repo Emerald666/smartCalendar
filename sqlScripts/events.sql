@@ -26,16 +26,21 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `events` (
+
+
+
+
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
-  `location` varchar(70) NOT NULL,
+  `location` varchar(50) NOT NULL,
   `startTime` int(15) NOT NULL,
   `endTime` int(15) NOT NULL,
   `description` text NOT NULL,
   `rank` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+  PRIMARY KEY (`id`),
+  FULLTEXT KEY `search` (`description`,`title`,`location`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `events`

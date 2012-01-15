@@ -14,9 +14,9 @@ class search_model extends CI_Model {
 
   function find_match($search){
 
-      $where = 'MATCH (title,description) AGAINST ("'. $search  .' " IN NATURAL LANGUAGE MODE )';
+      $where = 'MATCH (description, title, location) AGAINST ("'. $search  .' " IN NATURAL LANGUAGE MODE )';
       $query = $this->db->where($where, NULL, FALSE);
-      $query = $this->db->get('myevents');
+      $query = $this->db->get('events');
       return $query;
   }
 }
