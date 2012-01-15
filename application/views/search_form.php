@@ -27,7 +27,7 @@
     </head>
     <body>
 
-            <? echo form_open('search/do_search'); ?>
+            <? echo form_open('search/read_search'); ?>
 
            
                 <input type="text" name="q" />

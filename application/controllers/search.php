@@ -24,7 +24,7 @@ function index(){
     $this->load->view('search_form');
 }
 
-function do_search(){
+function read_search(){
     
         /** Read search Keywords **/
         // Get the search variable from URL
@@ -37,18 +37,21 @@ function do_search(){
           exit;
        }
        $search=mysql_real_escape_string($trimmed);
+       $this->find($search);
        
-
+}
        // Needs major security improvements
 
       /**   END Read search Keywords **/
 
-       //$where = 'MATCH (title, description) AGAINST ("MySQL"   WITH QUERY EXPANSION )';
+       
+       
 
-       /** MySQL FULL TEXT SEARCH
+function find($search){
+
+        /** MySQL FULL TEXT SEARCH
         * !!!! 50% threshold
         *  **/
-      
       $this->load->model('search_model');
       $query = $this->search_model->find_match($search);
 
@@ -60,7 +63,17 @@ function do_search(){
 
        $this->load->view('search_view_test',$data);
 
-        }
+  }
+
+ function find_key($key_word){
+     $this->load->model('search_model');
+     $query = $this->search_model->load_childs($key_word);
+     $row = $query->row_array();
+     //$search =  $result['childs'];
+     $search = $row['childs'];
+     $this->find($search);
+
+ }
 
 }
 

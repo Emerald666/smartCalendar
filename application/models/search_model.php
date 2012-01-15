@@ -19,5 +19,13 @@ class search_model extends CI_Model {
       $query = $this->db->get('events');
       return $query;
   }
+
+  function load_childs($key_word){
+      $query = $this->db->where('key_word',$key_word);
+      $query = $this->db->select('childs');
+      $query = $this->db->get('key_words');
+      return $query;;
+
+  }
 }
 ?>
