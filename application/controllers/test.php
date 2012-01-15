@@ -15,75 +15,138 @@
 
 */
 class Test extends CI_Controller {
-
-	public function index()
-	{
-           $this->load->model('userprofiles');
-           $data=$this->userprofiles->getProfile(2);
-           $this->load->view("modifyProfile_view", $data);
-	}
-        public function updateUserProfile(){
-            $this->load->model('userprofiles');
-            $this->userprofiles->updateProfile();
-
+    /**
+     * Tests the display of the modify user profile
+     * @author Leon
+     * @param void
+     * @return void
+     */
+    public function index()
+    {
+       $this->load->model('userprofiles');
+       $data=$this->userprofiles->getProfile(2);
+       $this->load->view("modifyProfile_view", $data);
+    }
+    /**
+     * Test the update profile by calling the appropriate method
+     * @author Leon
+     * @param void
+     * @return void
+     */
+    public function updateUserProfile(){
+        $this->load->model('userprofiles');
+        $this->userprofiles->updateProfile();
+    }
+    /**
+     * Tests the key generation
+     * @author Leon
+     * @param void
+     * @return void
+     */
+    public function testKeys(){
+        $this->load->model('keys');
+        $query=$this->keys->addKey('test2');
+        if($query==TRUE){
+            echo "success<br/>";
+        }else{
+            echo "failure<br/>";
         }
-        public function testKeys(){
-            $this->load->model('keys');
-            $query=$this->keys->addKey('test2');
-            if($query==TRUE){
-                echo "success<br/>";
-            }else{
-                echo "failure<br/>";
-            }
 
-            echo "hello world";
-        }
-       public function getEmails(){
-           $this->load->model('gmail');
-           $this->gmail->getNewMail();//isValid(array('bla'=>'bla'));//
-       }
-       public function getEvents(){
-           $this->load->model('calendar');
-           $this->calendar->getCalendarEvents();
-       }
+        echo "hello world";
+    }
+    /**
+     * Test the gmail model by retrieving the emails
+     * @author Leon
+     * @param void
+     * @return void
+     */
+    public function getEmails(){
+       $this->load->model('gmail');
+       $this->gmail->getNewMail();//isValid(array('bla'=>'bla'));//
+    }
+    /**
+     * Test the calendar model by retrieving the events
+     * @author Leon
+     * @param void
+     * @return void
+     */
+    public function getEvents(){
+       $this->load->model('calendar');
+       $this->calendar->getCalendarEvents();
+    }
+    /**
+     * Tests the facebook model by retrieving the events
+     * @author Leon
+     * @param void
+     * @return void
+     */
+    public function getFacebook(){
+      $this->load->model('facebook_model');
+      $this->facebook_model->getEvents();
+    }
+    /**
+     * Test the date picker plugin through view display
+     * @author Leon
+     * @param void
+     * @return void
+     */
+    public function testDatePicker(){
+      $this->load->view('event_form');
+    }
+    /**
+     * Gets Called when an event is created, will be copy pasted to the event model
+     * @author Leon
+     * @param void
+     * @return void
+     */
+    public function addEvent(){
+     $this->form_validation->set_rules('title', 'Title','trim|required|xss_clean');
+     $this->form_validation->set_rules('startTime', 'Start time','trim|required|xss_clean');
+     $this->form_validation->set_rules('endTime', 'End time','trim|required|xss_clean');
+     $this->form_validation->set_rules('description', 'Description','trim|required|xss_clean');
+     if($this->form_validation->run() == FALSE){
+        $this->testDatePicker();
+     }else{
+        echo "hello";
+     }
 
-      public function facebookLogin(){
-          $this->load->model('facebook_model');
-          $this->facebook_model->getEvents();
-      }
-
-      public function testDatePicker(){
-          $this->load->view('event_form');
-      }
-
-      public function addEvent(){
-         $this->form_validation->set_rules('title', 'Title','trim|required|xss_clean');
-         $this->form_validation->set_rules('startTime', 'Start time','trim|required|xss_clean');
-         $this->form_validation->set_rules('endTime', 'End time','trim|required|xss_clean');
-         $this->form_validation->set_rules('description', 'Description','trim|required|xss_clean');
-         if($this->form_validation->run() == FALSE){
-            $this->testDatePicker();
-         }else{
-            echo "hello";
-         }
-         
-      }
-
-      public function getHosts(){
-          $this->load->model('userprofiles');
-          $this->userprofiles->getHosts();
-      }
-
-      public function getWelcome(){
-        $this->load->view('welcome');
-      }
-
-      public function getUserPage(){
-          $this->load->view('users_area');
-      }
-
-      public function modifyEvent(){
-          $this->load->view('modifyEvent');
-      }
+    }
+    /**
+     * Get all the hosts that can invite us on facebook to their events
+     * @author Leon
+     * @param void
+     * @return void
+     */
+    public function getHosts(){
+      $this->load->model('userprofiles');
+      $this->userprofiles->getHosts();
+    }
+    /**
+     * Loads the welcome view
+     * @author Leon
+     * @param void
+     * @return void
+     */
+    public function getWelcome(){
+    $this->load->view('welcome');
+    }
+    /**
+     * Loads the user page view
+     * @author Leon
+     * @param void
+     * @return void
+     */
+    public function getUserPage(){
+      $this->load->view('users_area');
+    }
+    /**
+     * Loads the modify event view
+     * @author Leon
+     * @param void
+     * @return void
+     */
+    public function modifyEvent(){
+      $this->load->view('modifyEvent');
+    }
 
 }

@@ -56,12 +56,12 @@
     <body>
         <div id ="container" class="container_16">
             <h1 id="message" class="prefix_2">Welcome to Smart Calendar</h1>
-            <a href="Www.google.com">
+            <a href="#">
                 <div id="student" class="grid_5 prefix_3">
                     <h1 id="studentHeader">Student</h1>
                 </div>
             </a>
-            <a href="Www.google.com">
+            <a href="user_controller">
                 <div id="club" class="grid_5 prefix_3">
                     <h1>Club</h1>
                 </div>

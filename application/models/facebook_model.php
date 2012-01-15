@@ -17,7 +17,12 @@
 
 */
 class Facebook_model extends CI_Model{
-
+    /**
+     * Returns all the facebook events with end date greater than current day
+     * @author Leon
+     * @param void
+     * @return array all the facebook events properly formatted
+     */
     function getEvents(){
          ini_set('include_path',ini_get('include_path').PATH_SEPARATOR.BASEPATH.'../application/libraries/Facebook_library/');
         include_once 'src/facebook.php';
@@ -118,7 +123,12 @@ class Facebook_model extends CI_Model{
             exit();
         }
     }
-
+    /**
+     * Validates the host by going through all the hosts of all the clubs
+     * @author Leon
+     * @param string $host
+     * @return string $userId, if the user is found then the $userId is != -1
+     */
     function validateHost($host){
         $this->load->model('userprofiles');
         $elements=$this->userprofiles->getHosts();
