@@ -17,18 +17,34 @@
 
 */
 class Events extends CI_Controller{
-
+    /**
+     * Populates the events table with Facebook events
+     * @author Leon
+     * @param void
+     * @return void
+     */
     function getFacebook(){
-        //add the facebookEvents
         $this->load->model('event');
         $this->event->addFacebook();
    }
 
+    /**
+     * Populates the events table with events received through emails
+     * @author Leon
+     * @param void
+     * @return void
+     */
    function getEmails(){
        $this->load->model('event');
        $this->event->addEmails();
    }
 
+   /**
+    * Simple method used for testing that returns the events description
+    * @author Leon
+    * @param void
+    * @return void
+    */
    function getAll(){
        $this->load->model('event');
        $query=$this->event->getAll();

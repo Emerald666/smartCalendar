@@ -28,6 +28,9 @@ class Message extends CI_Model {
      * End time: xxxx\n
      * Description: xxxx\n ==> this is good because we allow the description to span
      *  as much space as it needs (we will need to set a limit !)
+     * @author Leon
+     * @param body of an email
+     * @return boolean true or false based on the validity of the message
      *
      */
 
@@ -80,6 +83,7 @@ class Message extends CI_Model {
 
     /**
      * Ensure that the different pieces of the message are in order
+     * @author Leon
      * @param string message
      * @return boolean
      */
@@ -112,6 +116,7 @@ class Message extends CI_Model {
 
     /**
      * Ensure that there are no duplicates of the keywords
+     * @author Leon
      * @param string message
      * @return bool
      */
@@ -131,6 +136,7 @@ class Message extends CI_Model {
 
     /**
      * Gets the pieces of an event
+     * @author Leon
      * @param string the whole message
      * @return array the different pieces of the message
      */
@@ -141,6 +147,7 @@ class Message extends CI_Model {
 
     /**
      * Explodes each piece of the event into an array keeping flexibility in mind
+     * @author Leon
      * @param string piece of the message
      * @return array with the useful content of the piece
      */
@@ -154,7 +161,9 @@ class Message extends CI_Model {
      *
      * Dates must also have a valid format in order to be processed
      * This Regular Expression will verify if a date is a valid YYYY-MM-DD with an optional HH:MM:SS
-     *
+     * @author an angel
+     * @param string date to be validated
+     * @return bool false or true depending on the
      */
     function validateTime($date){
         if (preg_match('/\\A(?:^((\\d{2}(([02468][048])|([13579][26]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])))))|(\\d{2}(([02468][1235679])|([13579][01345789]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|(1[0-9])|(2[0-8]))))))(\\s(((0?[0-9])|(1[0-9])|(2[0-3]))\\:([0-5][0-9])((\\s)|(\\:([0-5][0-9])))?))?$)\\z/', $date)) {

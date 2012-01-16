@@ -20,14 +20,21 @@
 class Userprofiles extends CI_Model{
 
     /**
-     * For testing purposes
+     * For testing purpose
+     * @author Leon
+     * @param void
      * @return all the user profiles
      */
     function getAll(){
         $query=$this->db->get('userProfiles');
         return $query;
     }
-
+    /**
+     * Gets the profile of a user based on his id that is stored in the session
+     * @author Leon
+     * @param string $userId
+     * @return array user information
+     */
     function getProfile($userId){
         $query=$this->db->get_where('userProfiles', array('userId'=>$userId));
         $data=array();
@@ -46,7 +53,9 @@ class Userprofiles extends CI_Model{
 
     /**
      * creates a blank profile
+     * @author Leon
      * @return true or false based on success of the operation
+     *
      */
     function createBlankProfile($data){
         $query=$this->db->insert('userProfiles', $data);
@@ -55,7 +64,9 @@ class Userprofiles extends CI_Model{
 
     /**
      * Update a user profile
+     * @author Leon
      * @param data array of elements to be updated
+     * @return void
      */
     function updateProfile(){
         $type=$this->input->get_post('type');
@@ -133,7 +144,8 @@ class Userprofiles extends CI_Model{
     }
 
     /**
-     *
+     * Deletes a profile based on the id of the user
+     * @author Leon
      * @param int $userId
      */
     function deleteProfile($userId){
@@ -144,7 +156,12 @@ class Userprofiles extends CI_Model{
         if(($numRowsBefore-$numRowsAfter)==1) return TRUE;
         return FALSE;
     }
-
+    /**
+     * Return the list of all userIds and their respective hosts
+     * @author Leon
+     * @param void
+     * @return array with all the hosts and their respective userId
+     */
     function getHosts(){
         $this->db->select('userId, hosts');
         $query = $this->db->get('userProfiles');
@@ -159,7 +176,12 @@ class Userprofiles extends CI_Model{
         return $data;
     }
 
-
+    /**
+     * Return the list of all userIds and their respective emails
+     * @author Leon
+     * @param void
+     * @return array with all the emails and their respective userId
+     */
     function getEmails(){
         $this->db->select('userId,emails');
         $query=$this->db->get('userProfiles');

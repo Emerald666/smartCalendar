@@ -17,6 +17,12 @@
 
 class Gmail extends CI_Model{
 
+    /**
+     * Reads the new emails and moves them to an archive once the event entry in the array is created
+     * @author Leon
+     * @param void
+     * @return array all the emails that are unanswered
+     */
     function getNewMail(){
         /* connect to gmail */
         $hostname = '{imap.gmail.com:993/imap/ssl}INBOX';
@@ -99,8 +105,9 @@ class Gmail extends CI_Model{
     
     /**
      * Verifies if the sender is valid
+     * @author Leon
      * @param array sender
-     * @return boolean
+     * @return string $userId != -1 if user is valid
      */
     function isValid($data){
         $this->load->model('userprofiles');

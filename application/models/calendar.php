@@ -2,6 +2,15 @@
 
 class Calendar extends CI_Model{
 
+    /**
+     * Connects to the calendar and pulls all the events within the given start and end time
+     * @author Leon
+     * @todo Include its functionality in our application after a market study
+     *       Allow it to take as parameters start and end times as well as calendars
+     *       Should return an array of events
+     * @param void
+     * @return void
+     */
     function getCalendarEvents(){
         if (!defined("PATH_SEPARATOR")) {
             if (strpos($_ENV["OS"], "Win") !== FALSE) {
