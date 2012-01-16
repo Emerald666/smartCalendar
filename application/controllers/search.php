@@ -44,8 +44,7 @@ function read_search(){
         /** Read search Keywords **/
         // Get the search variable from URL
        $var=$this->input->post('q');
-       $trimmed = trim($var);
-        
+       $trimmed = trim($var);   
        $search=mysql_real_escape_string($trimmed);
        $this->find($search);
        
@@ -64,19 +63,17 @@ function read_search(){
  */
 function find($search){
 
-        /** MySQL FULL TEXT SEARCH
-        * !!!! 50% threshold
-        *  **/
-      $this->load->model('search_model');
-      $query = $this->search_model->find_match($search);
+    /** MySQL FULL TEXT SEARCH
+    * !!!! 50% threshold
+    *  **/
+  $this->load->model('search_model');
+  $query = $this->search_model->find_match($search);
 
-       /** END MySQL FULL TEXT SEARCH **/
+   /** END MySQL FULL TEXT SEARCH **/
 
-       $data = array('events'=>$query->result_array() );
+   $data = array('events'=>$query->result_array() );
 
-       //var_dump($query->result_array());
-
-       $this->load->view('search_view_test',$data);
+   $this->load->view('search_view_test',$data);
 
   }
 

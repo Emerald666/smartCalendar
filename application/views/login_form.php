@@ -52,7 +52,7 @@
         <div id="container" class="container_16">
             <div id="form" class="grid_5 push_5">
                 <h1>Login Form:</h1>
-                <?php echo form_open('user_controller/validate_credentials'); ?>
+                <?php echo form_open('user/validate_credentials'); ?>
                     <div style="color:red"> <?php echo form_error('email'); ?>  </div>
                     <div class="input_wrapper">
                         <input type="text" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>" size="50" />
@@ -63,7 +63,7 @@
                     </div>
                     <div><input type="submit" value="Submit" /></div>
                     <br/>
-                    <?php echo anchor('user_controller/signup', 'Register Now!'); ?>
+                    <?php echo anchor('user/signup', 'Register Now!'); ?>
                 <?php echo form_close(); ?>
             </div>
         </div>

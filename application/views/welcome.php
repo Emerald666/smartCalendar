@@ -61,7 +61,7 @@
                     <h1 id="studentHeader">Student</h1>
                 </div>
             </a>
-            <a href="user_controller">
+            <a href=<?php echo base_url("/index.php/user");?>>
                 <div id="club" class="grid_5 prefix_3">
                     <h1>Club</h1>
                 </div>

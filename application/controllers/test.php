@@ -82,8 +82,9 @@ class Test extends CI_Controller {
      */
     public function getFacebook(){
       $this->load->model('facebook_model');
-      $this->facebook_model->getEvents();
+      print_r($this->facebook_model->getEvents());
     }
+
     /**
      * Test the date picker plugin through view display
      * @author Leon

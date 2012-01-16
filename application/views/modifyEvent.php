@@ -184,7 +184,7 @@
                       <textarea class="descriptionEditBox" cols="37" rows="5"></textarea>
                   </div>
               </div>
-               <a href="#" style="margin-left: -20px"class="button on back" title="Remove event"><span class="icon icon63"></span><span>Back to user page</span></a>
+               <a href="#" style="margin-left: -20px"class="button on back" title="Previous"><span class="icon icon63"></span><span>Back to user page</span></a>
             </div>
         </div>
     </body>

@@ -23,7 +23,7 @@
                     return false;
                 });
                 $('.time').datetimepicker({
-                onClose: function(dateText, inst){
+                    onClose: function(dateText, inst){
                         if(dateText!=""){
                             var date=new Date(dateText);
                             //alert(date.getTime());
@@ -36,7 +36,7 @@
                 });
              });
         </script>
-       <style type="text/css">
+        <style type="text/css">
           body{
                background: transparent url(<?php echo base_url("/application/libraries/images/noise.png");?>) repeat 0 0;
             }
@@ -48,7 +48,7 @@
                font-family: Shadows Into Light, Arial, Helvetica, sans-serif;
                font-size: 40px;
            }
-         label{
+         label[title='Logout']{
             margin-top:30px;
             padding:12px;
             border-radius :2px;
@@ -144,21 +144,30 @@
             border-width:1px;
             margin-bottom:15px;
         }
-
+        a[title='Add event']{
+            width:90px;
+        }
+        a[title='Update profile']{
+            width:110px;
+        }
        </style>
     </head>
     <body>
         <div id="container" class="container_16">
             <div class="grid_15">
-                <h1>Welcome Back, <?php echo $this->session->userdata('email'); ?></h1>
+                <h1>Welcome Back,</h1>
             </div>
             <div id="logout" class="grid_1">
-                <a href="walou.html">
-                    <label>Logout</label>
+                <a href="logout">
+                    <label title="Logout">Logout</label>
                 </a>
             </div>
+            <div id="addContainer" class="grid_16">
+                <a href="updateProfile" class="button on" title="Update profile"><span class="icon icon4"></span><span>Update Profile</span></a>
+            </div>
+            <br/>
             <div id="addContainer" class="grid_2">
-                <a href="#" class="button on" title="Add event"><span class="icon icon3"></span><span>New</span></a>
+                <a href="#" class="button on" title="Add event"><span class="icon icon3"></span><span>New Event</span></a>
             </div>
             <div id="eventForm" class="grid_14 alpha">
                 <?php
@@ -167,6 +176,7 @@
                 <input type="text" name="title" id="title" placeholder="Title" value="" />
                  <br/>
                  <input type="text" name="startTime" id="startTime" placeholder="Start Time" value="" class="time" />
+                 <label>to</label>
                  <input type="text" name="endTime" id="endTime" placeholder="End Time" value="" class="time" />
                  <br/>
                  <?php
@@ -179,7 +189,7 @@
                 ?>
             </div>
             <div id="EventsHeader" class="grid_16 push_6">
-                <h2>Events!</h2>
+                <h2>My Events!</h2>
             </div>
             <div class="dayContainer grid_16">
                 <span><b>Friday Jan 2200</b></span>

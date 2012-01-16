@@ -70,7 +70,7 @@
         <div id="container" class="container_16">
             <div id="form" class="grid_7 push_5">
                 <h1>Register Form:</h1>
-                <?php echo form_open('user_controller/add_user'); ?>
+                <?php echo form_open('user/add_user'); ?>
                 <div style="color:red"> <?php echo form_error('email'); ?>  </div>
                 <input type="text" name="email" placeholder ="Email" value="<?php echo set_value('email'); ?>" size="50" />
                 <div style="color:red"> <?php echo form_error('password'); ?> </div>

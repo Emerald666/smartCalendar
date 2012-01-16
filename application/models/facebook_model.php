@@ -100,6 +100,7 @@ class Facebook_model extends CI_Model{
                     'endTime'=>$key['end_time'],
                     'description'=>$key['description']
                     );
+
                 $userId=$this->validateHost($key['host']);
                 if($userId!=-1){
                     $event['userId']=$userId;
