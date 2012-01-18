@@ -74,8 +74,8 @@ class Events extends CI_Controller{
           if ($day!= NULL){
               $sorted_events[$day][]= $event;
           }
-
        }
+       return $sorted_events;
    }
 
    /**
@@ -90,5 +90,18 @@ class Events extends CI_Controller{
            return NULL;
    }
 
+   /**
+    * For testing the sort() function
+    * @author Mouhyi
+    * @param arry $sorted_events
+    */
+   function test(){
+       $this->load->model('event');
+       $query=$this->event->getAll();
+       $events = $query->result_array();
+       $tmp = sort('events');
+       $data =array('daily_events' => ($tmp)  );
+       $this->load->view('view_events_test',$data);
+   }
 
 }
