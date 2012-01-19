@@ -34,6 +34,37 @@
                $('.title').click(function(){
                      $(this).closest('.event').find('.content').slideToggle(500);
                 });
+                
+                 $("#submit").click(function(){
+                    var title=$("#title").val();
+                    var startTime=Date.parse($("#startTime").val());
+                    var endTime=Date.parse($("#endTime").val());
+                    var description=$("#description").val();
+                    var dataString = 'title='+title+'&startTime='+startTime+'&endTime='+endTime+"&description="+description;
+                    $.ajax({
+                       type: "POST",
+                       url: "http://localhost/smartCalendar/index.php/events/addNewEvent",
+                       data: dataString,
+                       cache: false,
+                       success: function(response){
+                           if(!$('#errors').length && !$('#success').length ){
+                                $("#eventForm").append(response);
+                                $("#errors").fadeOut(2000, function(){
+                                    $(this).remove();
+                                });
+                                $("#success").fadeOut(2000, function(){
+                                    $(this).remove();
+                                    $("#title").val('');
+                                    $("#endTime").val('');
+                                    $("#startTime").val('');
+                                    $("#description").val('');
+                                });
+                            }
+                       }
+                    });
+                    return false;
+                 });
+               
              });
         </script>
         <style type="text/css">
@@ -71,8 +102,9 @@
 
         #eventForm{
             display:none;
-            border-left-style:dotted;
-            border-width:1px;
+            /*border-left-style:dotted;
+            border-width:1px;*/
+            border-left:1px solid white;
             padding:3px;
         }
         input, textarea{
@@ -150,6 +182,20 @@
         a[title='Update profile']{
             width:110px;
         }
+        #success{
+            background-color:#DAFFDA;
+            color:#DD4B39;
+            padding:10px;;
+            border: 1px solid #e2e1d5;
+            width:320px;
+        }
+        #errors{
+            color:#DD4B39;
+            padding:10px;
+            background-color: #fbf9ea;
+            border: 1px solid #e2e1d5;
+            width:320px;
+        }
        </style>
     </head>
     <body>
@@ -171,9 +217,11 @@
             </div>
             <div id="eventForm" class="grid_14 alpha">
                 <?php
-                    echo form_open('test/addEvent');
+                    echo form_open('');
                 ?>
-                <input type="text" name="title" id="title" placeholder="Title" value="" />
+                 <input type="text" name="title" id="title" placeholder="Title" value="" />
+                 <br/>
+                 <input type="text" name="title" id="title" placeholder="Location" value=""/>
                  <br/>
                  <input type="text" name="startTime" id="startTime" placeholder="Start Time" value="" class="time" />
                  <label>to</label>
@@ -185,7 +233,6 @@
                     $attributes=array('id'=>'submit', 'name'=>'create', 'value'=>'Create');
                     echo form_submit($attributes);
                     echo form_close();
-                    echo validation_errors();
                 ?>
             </div>
             <div id="EventsHeader" class="grid_16 push_6">

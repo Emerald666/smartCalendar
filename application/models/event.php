@@ -156,6 +156,34 @@ class Event extends CI_Model{
         return $data;
     }
 
+    /**
+     *
+     */
+    public function addEvent(){
+     $this->form_validation->set_rules('title', 'Title','trim|required|xss_clean');
+          $this->form_validation->set_rules('location', 'Location','trim|required|xss_clean');
+     $this->form_validation->set_rules('startTime', 'Start time','trim|required|xss_clean');
+     $this->form_validation->set_rules('endTime', 'End time','trim|required|xss_clean');
+     $this->form_validation->set_rules('description', 'Description','trim|required|xss_clean');
+     if($this->form_validation->run() == FALSE){
+        $this->load->view('errors');
+     }else{
+         $time=mktime()*1000;
+        if(strcmp($this->input->get_post('startTime'),"NaN")==0 || strcmp($this->input->get_post('endTime'),"NaN")==0){
+            $this->load->view('customErrors', array('errorNumber'=>1));
+        }
+        else if($time>$this->input->get_post('startTime') || $this->input->get_post('endTime')<$time){
+            $this->load->view('customErrors', array('errorNumber'=>2));
+        }
+        else if($this->input->get_post('startTime') >= $this->input->get_post('endTime')){
+            $this->load->view('customErrors', array('errorNumber'=>3));
+        }else{
+            $this->load->view('customErrors', array('errorNumber'=>-1));
+        }
+     }
+
+    }
+
 
 
 

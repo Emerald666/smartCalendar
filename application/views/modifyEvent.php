@@ -45,7 +45,7 @@
                 });
 
                 $(".titleEditBox").change(function(){
-                    $('.editName').hide();
+                    $('.editTitle').hide();
                     var boxval=$(".titleEditBox").val();
                     var dataString = 'title='+ boxval+'&type=1';
                    /* $.ajax({
@@ -71,6 +71,47 @@
                 });
                 ///////////////////////////////////////////////
                 //
+                //The location
+                ///////////////////////////////////////////////
+                $('.editLocationLink').click(function(){
+                   $('.locationTextWrapper').hide();
+                   var data=$('.locationTextWrapper').html();
+                   $('.editLocation').show();
+                   $('.locationEditBox').html(data);
+                   $('.locationEditBox').focus();
+                });
+
+                $(".locationEditBox").mouseup(function(){
+                    return false;
+                });
+
+                $(".locationEditBox").change(function(){
+                    $('.editLocation').hide();
+                    var boxval=$(".locationEditBox").val();
+                    var dataString = 'location='+ boxval+'&type=2';
+                   /* $.ajax({
+                        type: "POST",
+                        url: "http://localhost/smartCalendar/index.php/test/updateUserProfile",
+                        data: dataString,
+                        cache: false,
+                        success: function(response){
+                            if(response=='p'){
+                                $('.nameTextWrapper').html(boxval);
+                                $('.nameTextWrapper').show();
+                            }
+                        }
+                    });*/
+                    $('.locationTextWrapper').html(boxval);
+                    $('.locationTextWrapper').show();
+                });
+
+                $(document).mouseup(function()
+                {
+                    $('.editLocation').hide();
+                    $('.locationTextWrapper').show();
+                });
+                ///////////////////////////////////////////////
+                //
                 //The description
                 ///////////////////////////////////////////////
                 $('.editDescriptionLink').click(function(){
@@ -88,7 +129,7 @@
                 $(".descriptionEditBox").change(function(){
                     $('.editDescription').hide();
                     var boxval=$(".descriptionEditBox").val();
-                    var dataString = 'name='+ boxval+'&type=1';
+                    var dataString = 'description='+ boxval+'&type=3';
                    /* $.ajax({
                         type: "POST",
                         url: "http://localhost/smartCalendar/index.php/test/updateUserProfile",
@@ -116,7 +157,7 @@
                 });
              });
     </script>
-    <style>
+    <style type="text/css">
       body{
           margin-top:30px;
           font-family:Helvetica, Arial, sans-serif;
@@ -126,22 +167,24 @@
        font-family: Shadows Into Light, Arial, Helvetica, sans-serif;
        font-size: 68px;
     }
-    #titleBox, #descriptionBox {
-        width: 400px;
+    #titleBox, #descriptionBox, #locationBox {
+        width: 450px;
         margin-left:-20px;
         margin-bottom:20px;
     }
-    .titleTextWrapper, .descriptionTextWrapper{
+    .titleTextWrapper, .descriptionTextWrapper, .locationTextWrapper{
         border: solid 1px #0099CC;
         padding: 5px;
         width: 320px;
         border-radius:3px;
     }
-    .editTitleLink, .editDescriptionLink{
-     float:right
+    .editTitleLink, .editDescriptionLink, .editLocationLink{
+        float:right;
+        width: 94px;
+        margin-left: 50px;
     }
     .button{
-      margin:0px;
+        margin:0px;
     }
     input, textarea{
         border-radius :5px;
@@ -159,6 +202,10 @@
     #startTime{
         margin-left:-20px;
     }
+    textarea{
+        margin-right:3px;
+    }
+
 
     </style>
     <body>
@@ -168,20 +215,27 @@
               <a href="#" style="margin-left: -20px"class="button on" title="Remove event"><span class="icon icon186"></span><span>remove</span></a>
               <br/><br/><br/>
               <div id="titleBox">
-                  <a href="#"class="editTitleLink button on" title="Edit"><span class="icon icon145"></span></a>
-                  <div class="titleTextWrapper">Title will go here</div>
+                  <a href="#"class="editTitleLink button on" title="Edit"><span class="icon icon145"></span><span>Title</span></a>
+                  <div class="titleTextWrapper"><?php echo $title; ?></div>
                   <div class="editTitle" style="display:none" >
                       <textarea class="titleEditBox" cols="37" rows="3"></textarea>
                   </div>
               </div>
-              <input type="text" name="startTime" id="startTime" value="01/04/2012 00:00 " class="time" />
+              <div id="locationBox">
+                  <a href="#"class="editLocationLink button on" title="Edit"><span class="icon icon145"></span><span>Location</span></a>
+                  <div class="locationTextWrapper"><?php echo $location; ?></div>
+                  <div class="editLocation" style="display:none" >
+                      <textarea class="locationEditBox" cols="37" rows="3"></textarea>
+                  </div>
+              </div>
+              <input type="text" name="startTime" id="startTime" value="<?php echo date('m/d/o H:i', $startTime);?>" class="time" />
               <label>to</label>
-              <input type="text" name="startTime" id="endTime"  value="01/04/2012 00:00 " class="time"/>
+              <input type="text" name="startTime" id="endTime"  value="<?php echo date('m/d/o H:i ', $endTime);?>" class="time"/>
               <div id="descriptionBox">
-                  <a href="#"class="editDescriptionLink button on" title="Edit"><span class="icon icon145"></span></a>
-                  <div class="descriptionTextWrapper">Title will go here</div>
+                  <a href="#"class="editDescriptionLink button on" title="Edit"><span class="icon icon145"></span><span>Description</span></a>
+                  <div class="descriptionTextWrapper"><?php echo $description; ?></div>
                   <div class="editDescription" style="display:none" >
-                      <textarea class="descriptionEditBox" cols="37" rows="5"></textarea>
+                      <textarea class="descriptionEditBox" cols="37" rows="11"></textarea>
                   </div>
               </div>
                <a href="#" style="margin-left: -20px"class="button on back" title="Previous"><span class="icon icon63"></span><span>Back to user page</span></a>

@@ -276,7 +276,9 @@
                 border-radius:3px;
             }
           .editNameLink, .editDescriptionLink, .editEmailLink, .editWebPageLink, .editPhoneLink, .editHostLink{
-           float:right;
+             float:right;
+             width: 94px;
+             margin-left: 50px;
           }
 
           .nameEditBox, .descriptionEditBox, .emailEditBox, .webPageEditBox, .phoneEditBox, .hostEditBox{
@@ -322,42 +324,42 @@
           <div id="fieldsContainer" class="grid_16 push_4">
               <h1>Update Your Profile</h1>
               <div id="nameBox">
-                  <a href="#"class="editNameLink button on" title="Edit Title"><span class="icon icon145"></span></a>
+                  <a href="#"class="editNameLink button on" title="Edit Title"><span class="icon icon145"></span><span>Name</span></a>
                   <div class="nameTextWrapper"><?php echo $name;?></div>
                   <div class="editName" style="display:none" >
                       <textarea class="nameEditBox" cols="43" rows="3"></textarea>
                   </div>
               </div>
             <div id="descriptionBox">
-                  <a href="#"class="editDescriptionLink button on" title="Edit Description"><span class="icon icon145"></span></a>
+                  <a href="#"class="editDescriptionLink button on" title="Edit Description"><span class="icon icon145"></span><span>Description</span></a>
                   <div class="descriptionTextWrapper"><?php echo $description;?></div>
                   <div class="editDescription" style="display:none" >
                       <textarea class="descriptionEditBox" cols="43" rows="10"></textarea>
                   </div>
               </div>
               <div id="emailBox">
-                  <a href="#"class="editEmailLink button on" title="Edit Emails"><span class="icon icon145"></span></a>
+                  <a href="#"class="editEmailLink button on" title="Edit Emails"><span class="icon icon145"></span><span>Emails</span></a>
                   <div class="emailTextWrapper"><?php echo $emails;?></div>
                   <div class="editEmail" style="display:none" >
                       <textarea class="emailEditBox" cols="43" rows="3"></textarea>
                   </div>
               </div>
               <div id="hostBox">
-                  <a href="#"class="editHostLink button on" title="Edit Hosts"><span class="icon icon145"></span></a>
+                  <a href="#"class="editHostLink button on" title="Edit Hosts"><span class="icon icon145"></span><span>Hosts</span></a>
                   <div class="hostTextWrapper"><?php echo $hosts;?></div>
                   <div class="editHost" style="display:none" >
                       <textarea class="hostEditBox" cols="43" rows="4"></textarea>
                   </div>
               </div>
               <div id="webPageBox">
-                  <a href="#"class="editWebPageLink button on" title="Edit Webpages"><span class="icon icon145"></span></a>
+                  <a href="#"class="editWebPageLink button on" title="Edit Webpages"><span class="icon icon145"></span><span>Webpages</span></a>
                   <div class="webPageTextWrapper"><?php echo $webPages;?></div>
                   <div class="editWebPage" style="display:none" >
                       <textarea class="webPageEditBox" cols="43" rows="3"></textarea>
                   </div>
              </div>
               <div id="phoneBox">
-                  <a href="#"class="editPhoneLink button on" title="Edit Phone Numbers"><span class="icon icon145"></span></a>
+                  <a href="#"class="editPhoneLink button on" title="Edit Phone Numbers"><span class="icon icon145"></span><span>Phone #</span></a>
                   <div class="phoneTextWrapper"><?php echo $phoneNumbers;?></div>
                   <div class="editPhone" style="display:none" >
                       <textarea class="phoneEditBox" cols="43" rows="3"></textarea>

@@ -29,6 +29,38 @@
         <link rel="stylesheet" href=" <?php echo base_url("/application/libraries/css/text.css");?>" type="text/css"  media="screen"/>
         <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'/>
         <link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'/>
+         <script type="text/javascript" src="<?php echo base_url("/application/libraries/js/jquery-1.3.2.min.js");?>"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#submit").click(function(){
+                    var email=$("#email").val();
+                    var password=$("#password").val();
+                    var passconf=$("#passconf").val();
+                    var key=$("#key").val();
+                    var dataString = 'email='+email+'&password='+password+'&passconf='+passconf+'&key='+key;
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/smartCalendar/index.php/user/add_user",
+                        data: dataString,
+                        cache: false,
+                        success: function(response){
+                            if(response=='p'){
+                                window.location.replace('http://localhost/smartCalendar/index.php/user/updateProfile');
+                            }else{
+                                if(!$('#errors').length){
+                                    $("#form").append(response);
+                                    $("#errors").fadeOut(2000, function(){
+                                        $(this).remove();
+                                    });
+                                }
+                            }
+                        }
+                    });
+                     return false;
+                });
+
+            });
+        </script>
         <style type="text/css">
             body{
                 background: transparent url(<?php echo base_url("/application/libraries/images/noise.png");?>) repeat 0 0;
@@ -63,6 +95,13 @@
                 padding-left:5px;
                 color:red;
             }
+            #errors{
+                color:#DD4B39;
+                padding:10px;
+                background-color: #fbf9ea;
+                border: 1px solid #e2e1d5;
+                width:280px;
+            }
        </style>
     </head>
 
@@ -70,18 +109,14 @@
         <div id="container" class="container_16">
             <div id="form" class="grid_7 push_5">
                 <h1>Register Form:</h1>
-                <?php echo form_open('user/add_user'); ?>
-                <div style="color:red"> <?php echo form_error('email'); ?>  </div>
-                <input type="text" name="email" placeholder ="Email" value="<?php echo set_value('email'); ?>" size="50" />
-                <div style="color:red"> <?php echo form_error('password'); ?> </div>
-                <input type="password" name="password" placeholder="Password" value="<?php echo set_value('password'); ?>" size="50" />
-                <div style="color:red"> <?php echo form_error('passconf'); ?> </div>
-                <input type="password" name="passconf" placeholder="Confirm Password" value="<?php echo set_value('passconf'); ?>" size="50" />
-                <div style="color:red"> <?php echo form_error('key'); ?> </div>
-                <input type="text" name="key" placeholder="Activation Key" value="<?php echo set_value('key'); ?>" size="50" />
+                <?php echo form_open(''); ?>
+                <input type="text" id="email" name="email" placeholder ="Email" value="<?php echo set_value('email'); ?>" size="50" />
+                <input type="password" id="password" name="password" placeholder="Password" value="<?php echo set_value('password'); ?>" size="50" />
+                <input type="password" id="passconf" name="passconf" placeholder="Confirm Password" value="<?php echo set_value('passconf'); ?>" size="50" />
+                <input type="text" id="key" name="key" placeholder="Activation Key" value="<?php echo set_value('key'); ?>" size="50" />
                 <a href="keyinfo.html"> Help </a>
                 <br/>
-                <input type="submit" value="Submit" />
+                <input type="submit" id="submit" value="Submit" />
                 <?php echo form_close()?>
             </div>
         </div>

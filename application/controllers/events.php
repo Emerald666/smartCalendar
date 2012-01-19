@@ -55,6 +55,11 @@ class Events extends CI_Controller{
        }
    }
 
+   function addNewEvent(){
+       $this->load->model('event');
+       return $this->event->addEvent();
+   }
+
 
 
 

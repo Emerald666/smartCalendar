@@ -63,7 +63,7 @@ class User extends CI_Controller {
             $this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
             $this->form_validation->set_rules('key', 'Key', 'trim|required');
             if($this->form_validation->run() == FALSE){
-                    $this->load->view('signup_form');      
+                    $this->load->view('errors');
             }else{
                 $this->load->model('user_model');
                 $query = $this->user_model->create_user();
@@ -73,11 +73,11 @@ class User extends CI_Controller {
                     $this->userprofiles->createBlankProfile(array('userId'=>$id));
                     $data=$this->userprofiles->getProfile($id);
                     $this->session->set_userdata('userId', $id);//****
+                    //Not sure how to tackle this one
                     $this->load->view("modifyProfile_view", $data);
                     //$this->load->view('signup_success');
                  }else{
-                    echo 'INVALID KEY';
-                    $this->load->view('signup_form');
+                    $this->load->view('customErrors', array('errorNumber'=>4));
                  }
 
             }
@@ -105,24 +105,30 @@ class User extends CI_Controller {
          * @param
          * @return
          */
-	function validate_credentials(){		
-            $this->load->model('user_model');
-            $query = $this->user_model->validate();
-            if($query) // if the user's credentials validated...
-            {
-                $data = array(
-                        'email' => $this->input->post('email'),
-                        'logged_in' => true
-                );
-                // create session and insert user's email
-                $this->session->set_userdata($data);
-                $userId = $this->getID($this->input->post('email'));
-                $this->session->set_userdata('userId', $userId);
-                $this->load->view("users_area", $data);
-                //redirect to use_area
-            }else{ // incorrect username or password
-                echo "Invalid Account, try again";
-                $this->index();
+	function validate_credentials(){
+            $this->form_validation->set_rules('email', 'Email','trim|required|xss_clean');
+            $this->form_validation->set_rules('password', 'Password','trim|required|xss_clean');
+            if($this->form_validation->run() == FALSE){
+                $this->load->view("errors");
+            }else{
+                $this->load->model('user_model');
+                $query = $this->user_model->validate();
+                if($query) // if the user's credentials validated...
+                {
+                    $data = array(
+                            'email' => $this->input->post('email'),
+                            'logged_in' => true
+                    );
+                    // create session and insert user's email
+                    $this->session->set_userdata($data);
+                    $userId = $this->getID($this->input->post('email'));
+                    $this->session->set_userdata('userId', $userId);
+                    //redirect to use_area
+                    echo 'p';
+                    //$this->load->view("users_area", $data);
+                }else{ // incorrect username or password
+                    $this->load->view("invalidAccount");
+                }
             }
 	}
 

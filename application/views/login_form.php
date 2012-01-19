@@ -9,7 +9,37 @@
         <link rel="stylesheet" href=" <?php echo base_url("/application/libraries/css/reset.css");?>" type="text/css"  media="screen"/>
         <link rel="stylesheet" href=" <?php echo base_url("/application/libraries/css/text.css");?>" type="text/css"  media="screen"/>
         <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'/>
-       <link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'/>
+        <link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'/>
+        <script type="text/javascript" src="<?php echo base_url("/application/libraries/js/jquery-1.3.2.min.js");?>"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#submit").click(function(){
+                    var email=$("#email").val();
+                    var password=$("#password").val();
+                    var dataString = 'email='+email+'&password='+password;
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/smartCalendar/index.php/user/validate_credentials",
+                        data: dataString,
+                        cache: false,
+                        success: function(response){
+                            if(response=='p'){
+                                window.location.replace('http://localhost/smartCalendar/index.php/user/gotoprofile');
+                            }else{
+                                if(!$('#errors').length){
+                                    $("#beforeError").append(response);
+                                    $("#errors").fadeOut(2000, function(){
+                                        $(this).remove();
+                                    });
+                                }
+                            }
+                        }
+                    });
+                     return false;
+                });
+               
+            });
+        </script>
         <style type="text/css">
             body{
                 background: transparent url(<?php echo base_url("/application/libraries/images/noise.png");?>) repeat 0 0;
@@ -43,6 +73,12 @@
                 text-decoration: none;
                 padding-left:5px;
             }
+            #errors{
+                color:#DD4B39;
+                padding:10px;
+                background-color: #fbf9ea;
+                border: 1px solid #e2e1d5;
+            }
         </style>
     </head>
 
@@ -55,16 +91,15 @@
                 <?php echo form_open('user/validate_credentials'); ?>
                     <div style="color:red"> <?php echo form_error('email'); ?>  </div>
                     <div class="input_wrapper">
-                        <input type="text" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>" size="50" />
+                        <input type="text" id="email" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>" size="50" />
                     </div>
                     <div style="color:red"> <?php echo form_error('password'); ?> </div>
                     <div class="input_wrapper">
-                        <input type="password" name="password" placeholder="Password" value="" size="50" />
+                        <input id="password" type="password" name="password" placeholder="Password" value="" size="50" />
                     </div>
-                    <div><input type="submit" value="Submit" /></div>
-                    <br/>
-                    <?php echo anchor('user/signup', 'Register Now!'); ?>
+                    <div id="beforeError"><input type="submit" value="Submit" id="submit"/></div>
                 <?php echo form_close(); ?>
+               <?php echo anchor('user/signup', 'Register Now!'); ?>
             </div>
         </div>
     </body>
