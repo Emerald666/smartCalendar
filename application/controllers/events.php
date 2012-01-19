@@ -97,6 +97,7 @@ class Events extends CI_Controller{
        $tmp = $this->sort($events);
        $data =array('daily_events' => ($tmp)  );
        $this->load->view('view_events_test',$data);
+       ///// 
    }
 
 }
