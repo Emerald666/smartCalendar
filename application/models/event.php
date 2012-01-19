@@ -104,7 +104,7 @@ class Event extends CI_Model{
      * @return $query
      */
     function getAll(){
-        //Removed the select only description from there
+        $this->db->select('id, title , startTime');    /// changed on Jan 18, 10:29 pm EDT
         $query=$this->db->get('events');
         return $query;
     }

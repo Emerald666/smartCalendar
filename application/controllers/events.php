@@ -77,7 +77,7 @@ class Events extends CI_Controller{
    function sort($events){
        $sorted_events=array();
        foreach ($events as $event){
-          $day = date ("l F j, Y", $event->startTime);
+          $day = date ("l F j, Y", $event['startTime']);
           if ($day!= NULL){
               $sorted_events[$day][]= $event;
           }
@@ -93,11 +93,10 @@ class Events extends CI_Controller{
    function test(){
        $this->load->model('event');
        $query=$this->event->getAll();
-       $events = $query->result();
+       $events = $query->result_array();
        $tmp = $this->sort($events);
        $data =array('daily_events' => ($tmp)  );
        $this->load->view('view_events_test',$data);
-       ///// 
    }
 
 }
