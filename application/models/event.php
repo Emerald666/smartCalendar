@@ -104,7 +104,7 @@ class Event extends CI_Model{
      * @return $query
      */
     function getAll(){
-        $this->db->select('description');
+        //Removed the select only description from there
         $query=$this->db->get('events');
         return $query;
     }

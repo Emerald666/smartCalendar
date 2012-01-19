@@ -75,26 +75,14 @@ class Events extends CI_Controller{
     * @return $sorted_events
     */
    function sort($events){
+       $sorted_events=array();
        foreach ($events as $event){
-          $day = get_day($event) ;
+          $day = date ("l F j, Y", $event->startTime);
           if ($day!= NULL){
               $sorted_events[$day][]= $event;
           }
        }
        return $sorted_events;
-   }
-
-
-   /**
-    * return the event start date in the format:  Day_of_the_week   Month   Day_of_he_month
-    * @param array $event
-    * @return string date
-    */
-   function get_day($event){
-       if(array_key_exists('startTime', $event) )
-           return  date ("l F j, Y",$event['startTime']);
-       else
-           return NULL;
    }
 
    /**
@@ -105,8 +93,8 @@ class Events extends CI_Controller{
    function test(){
        $this->load->model('event');
        $query=$this->event->getAll();
-       $events = $query->result_array();
-       $tmp = sort('events');
+       $events = $query->result();
+       $tmp = $this->sort($events);
        $data =array('daily_events' => ($tmp)  );
        $this->load->view('view_events_test',$data);
    }

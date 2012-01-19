@@ -37,10 +37,11 @@
                 
                  $("#submit").click(function(){
                     var title=$("#title").val();
+                    var location=$("#location").val();
                     var startTime=Date.parse($("#startTime").val());
                     var endTime=Date.parse($("#endTime").val());
                     var description=$("#description").val();
-                    var dataString = 'title='+title+'&startTime='+startTime+'&endTime='+endTime+"&description="+description;
+                    var dataString = 'title='+title+'&startTime='+startTime+'&endTime='+endTime+"&description="+description+"&location="+location;
                     $.ajax({
                        type: "POST",
                        url: "http://localhost/smartCalendar/index.php/events/addNewEvent",
@@ -118,7 +119,7 @@
             height:150px;
             width:450px;
         }
-        input[name='title']{
+        input[name='title'], input[name='location']{
             width:350px;
         }
         input[type='submit']{
@@ -221,7 +222,7 @@
                 ?>
                  <input type="text" name="title" id="title" placeholder="Title" value="" />
                  <br/>
-                 <input type="text" name="title" id="title" placeholder="Location" value=""/>
+                 <input type="text" name="location" id="location" placeholder="Location" value=""/>
                  <br/>
                  <input type="text" name="startTime" id="startTime" placeholder="Start Time" value="" class="time" />
                  <label>to</label>

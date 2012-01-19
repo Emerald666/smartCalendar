@@ -147,8 +147,9 @@ class Test extends CI_Controller {
      * @return void
      */
     public function modifyEvent(){
+      $eventId = $this->uri->segment(3, 2);
       $this->db->select('title, startTime, endTime, description, location');
-      $query=$this->db->get_where('events', array('id'=>2));
+      $query=$this->db->get_where('events', array('id'=>$eventId));
       $data=array();
       foreach($query->result() as $row){
           $data['title']=$row->title;
