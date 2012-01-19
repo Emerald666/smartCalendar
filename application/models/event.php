@@ -183,6 +183,23 @@ class Event extends CI_Model{
      }
 
     }
+    
+    /**
+    * groups events into an associative arary : day=>array(corresponding events)
+    * @author Mouhyi
+    * @param array $events
+    * @return $sorted_events
+    */
+   function sort($events){
+       $sorted_events=array();
+       foreach ($events as $event){
+          $day = date ("l F j, Y", $event['startTime']);
+          if ($day!= NULL){
+              $sorted_events[$day][]= $event;
+          }
+       }
+       return $sorted_events;
+   }
 
 
 
