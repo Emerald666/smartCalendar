@@ -19,6 +19,14 @@
     </head>
     <script type="text/javascript">
              $(document).ready(function() {
+
+                var l=$('.descriptionTextWrapper').html();
+                var wordCount=l.split(/[\s\.\?]+/).length;
+                if(wordCount > 80){
+                    $('#descriptionBox').css("width", "610px");
+                    $('.descriptionTextWrapper').css("width", "470px");
+                    $('.descriptionEditBox').css("width","470px");
+                }
                 $('.time').datetimepicker({
                 onClose: function(dateText, inst){
                         if(dateText!=""){
@@ -216,14 +224,14 @@
               <br/><br/><br/>
               <div id="titleBox">
                   <a href="#"class="editTitleLink button on" title="Edit"><span class="icon icon145"></span><span>Title</span></a>
-                  <div class="titleTextWrapper"><?php echo $title; ?></div>
+                  <div class="titleTextWrapper"><?php echo nl2br($title); ?></div>
                   <div class="editTitle" style="display:none" >
                       <textarea class="titleEditBox" cols="37" rows="3"></textarea>
                   </div>
               </div>
               <div id="locationBox">
                   <a href="#"class="editLocationLink button on" title="Edit"><span class="icon icon145"></span><span>Location</span></a>
-                  <div class="locationTextWrapper"><?php echo $location; ?></div>
+                  <div class="locationTextWrapper"><?php echo nl2br($location); ?></div>
                   <div class="editLocation" style="display:none" >
                       <textarea class="locationEditBox" cols="37" rows="3"></textarea>
                   </div>
@@ -233,7 +241,7 @@
               <input type="text" name="startTime" id="endTime"  value="<?php echo date('m/d/o H:i ', $endTime);?>" class="time"/>
               <div id="descriptionBox">
                   <a href="#"class="editDescriptionLink button on" title="Edit"><span class="icon icon145"></span><span>Description</span></a>
-                  <div class="descriptionTextWrapper"><?php echo $description; ?></div>
+                  <div class="descriptionTextWrapper"><?php echo nl2br($description); ?></div>
                   <div class="editDescription" style="display:none" >
                       <textarea class="descriptionEditBox" cols="37" rows="11"></textarea>
                   </div>
